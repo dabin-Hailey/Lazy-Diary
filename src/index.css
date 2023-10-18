@@ -1,0 +1,19 @@
+:root {
+  font-family: "Inter", "IBM Plex Sans KR", "Nunito", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 10px;
+  background-color: #faf3f0;
+  padding: 3rem 5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  min-width: 580px;
+  min-height: 80vh;
+  margin: 0;
+  padding: 0;
+}
