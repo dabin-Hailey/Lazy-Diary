@@ -12,6 +12,16 @@ import {
 } from "../../styles";
 
 const Login: React.FC = () => {
+  const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
+  const REDIRECT_URI: string = import.meta.env.VITE_REDIRECT_URI;
+  const link: string = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+
+  const loginWithKakao = () => {
+    window.location.href = link;
+
+    console.log(location.href);
+  };
+
   return (
     <div css={loginWrapper}>
       <h1 css={loginTitle}>로그인</h1>
@@ -39,7 +49,10 @@ const Login: React.FC = () => {
       <div css={loginTextWrapper}>
         <p css={loginText}>또는</p>
       </div>
-      <button css={kakaoLoginBtn}>
+      <button
+        css={kakaoLoginBtn}
+        onClick={loginWithKakao}
+      >
         <img src="/images/kakao_login_large_wide.png"></img>
       </button>
     </div>

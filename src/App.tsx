@@ -1,5 +1,4 @@
 // /** @jsxImportSource @emotion/react */
-// import { css } from "@emotion/react";
 import Footer from "./components/common/Footer";
 import Header from "./components/common/Header";
 import Login from "./components/login/Login";
@@ -9,8 +8,8 @@ function App() {
   return (
     <>
       <Header />
-      {/* <Login /> */}
-      <SignUp />
+      <Login />
+      {/* <SignUp /> */}
       <Footer />
     </>
   );
