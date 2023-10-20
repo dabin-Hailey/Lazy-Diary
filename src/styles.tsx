@@ -49,3 +49,52 @@ export const reverseBtn = css`
     cursor: pointer;
   }
 `;
+
+export const loginTitle = css`
+  font-size: 4rem;
+  font-weight: bold;
+  color: ${colors.secondaryColor};
+`;
+
+export const loginForm = css`
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+`;
+
+export const loginFormText = css`
+  font-size: 1.8rem;
+  color: ${colors.primaryColor};
+`;
+
+export const loginInput = css`
+  width: 35rem;
+  min-height: 3rem;
+  margin-bottom: 2rem;
+
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid ${colors.secondaryColor};
+  outline: none;
+
+  font-size: 1.8rem;
+  color: ${colors.secondaryColor};
+
+  ::placeholder {
+    font-style: italic;
+    font-size: 1.8rem;
+  }
+
+  :focus {
+    border: none;
+    outline: 1px solid ${colors.secondaryColor};
+    box-shadow: 0 0 0.7rem ${colors.secondaryColor};
+  }
+`;
+
+export const loginBtn = css`
+  ${reverseBtn} & {
+    padding: 1rem 0;
+  }
+`;

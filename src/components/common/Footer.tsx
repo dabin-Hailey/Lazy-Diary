@@ -39,12 +39,12 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const footerWrapper = css`
+  height: 10rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  bottom: 0;
 `;
 
 const footerTextWrapper = css`

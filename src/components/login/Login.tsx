@@ -1,7 +1,15 @@
 // import React from 'react'
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { colors, reverseBtn } from "../../styles";
+import {
+  colors,
+  loginBtn,
+  loginForm,
+  loginFormText,
+  loginInput,
+  loginTitle,
+  reverseBtn
+} from "../../styles";
 
 const Login: React.FC = () => {
   return (
@@ -47,55 +55,6 @@ const loginWrapper = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const loginTitle = css`
-  font-size: 4rem;
-  font-weight: bold;
-  color: ${colors.secondaryColor};
-`;
-
-const loginForm = css`
-  width: 35rem;
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-`;
-
-const loginFormText = css`
-  font-size: 1.8rem;
-  color: ${colors.primaryColor};
-`;
-
-const loginInput = css`
-  width: 35rem;
-  min-height: 3rem;
-  margin-bottom: 2rem;
-
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid ${colors.secondaryColor};
-  outline: none;
-
-  font-size: 1.8rem;
-  color: ${colors.secondaryColor};
-
-  ::placeholder {
-    font-style: italic;
-    font-size: 1.8rem;
-  }
-
-  :focus {
-    border: none;
-    outline: 1px solid ${colors.secondaryColor};
-    box-shadow: 0 0 0.7rem ${colors.secondaryColor};
-  }
-`;
-
-const loginBtn = css`
-  ${reverseBtn} & {
-    padding: 1rem 0;
-  }
 `;
 
 const signUpBtn = css`
