@@ -44,10 +44,7 @@ const footerWrapper = css`
   align-items: center;
   justify-content: center;
 
-  position: fixed;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
 `;
 
 const footerTextWrapper = css`
@@ -81,4 +78,10 @@ const footerIconWrapper = css`
 const footerIcon = css`
   width: 3rem;
   height: 3rem;
+  transition: all 0.3s ease-in-out;
+
+  :hover {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
 `;

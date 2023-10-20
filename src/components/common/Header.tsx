@@ -49,7 +49,7 @@ const profilePhoto = css`
 
 const headerTitle = css`
   font-size: 3.6rem;
-  font-weight: 900;
+  font-weight: 600;
   letter-spacing: 0.1rem;
   color: ${colors.primaryColor};
   white-space: nowrap;

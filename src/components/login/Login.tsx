@@ -124,5 +124,9 @@ const kakaoLoginBtn = css`
 
   img {
     width: 35rem;
+
+    :hover {
+      cursor: pointer;
+    }
   }
 `;
