@@ -10,7 +10,14 @@ const Header: React.FC = () => {
         <div css={profilePhoto}>
           <img src="/images/profile-image.jpg" />
         </div>
-        <div css={headerTitle}>김다빈님의 일기</div>
+        <div
+          css={headerTitle}
+          onClick={() => {
+            window.location.href = "/";
+          }}
+        >
+          김다빈님의 일기
+        </div>
       </div>
       <div css={logoutBtn}>Log Out</div>
     </div>

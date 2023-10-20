@@ -1,14 +1,25 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+// import { KakaoProfile } from "../../types/User.ts";
+
+interface KakaoProfile {
+  id?: string | "";
+  nickname?: string | "";
+  profile_image_url?: string | "";
+  thumbnail_image_url?: string | "";
+  recentLoginLog?: number | null;
+}
 
 const Kakao = () => {
-  const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState<KakaoProfile>({});
+  const [isLogined, setIsLogined] = useState<boolean>(false);
 
   //카카오에서 받은 인가코드
   const AUTHORIZE_CODE: string | null = new URLSearchParams(
     window.location.search
   ).get("code");
-  console.log(AUTHORIZE_CODE);
   const GRANT_TYPE: string = "authorization_code";
   const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
   const REDIRECT_URI: string = import.meta.env.VITE_REDIRECT_URI;
@@ -25,8 +36,7 @@ const Kakao = () => {
         }
       )
       .then((response) => {
-        const { data } = response;
-        const { access_token: ACCESS_TOKEN } = data;
+        const { access_token: ACCESS_TOKEN } = response.data;
 
         axios
           .post(
@@ -41,7 +51,22 @@ const Kakao = () => {
             }
           )
           .then((response) => {
-            console.log(response);
+            const { id, kakao_account } = response.data;
+            const { profile } = kakao_account;
+            const { nickname, profile_image_url, thumbnail_image_url } =
+              profile;
+            const recentLoginLog = Date.now(); //최근 로그인 기록
+
+            const newUserData: KakaoProfile = {
+              id,
+              nickname,
+              profile_image_url,
+              thumbnail_image_url,
+              recentLoginLog
+            };
+
+            setUserData(newUserData);
+            setIsLogined(true);
           })
           .catch((error) => console.log("사용자 정보 받기 실패", error));
       })
@@ -50,9 +75,29 @@ const Kakao = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
 
-  return <div>로그인 중입니다~~</div>;
+    if (userData && isLogined) {
+      localStorage.setItem("userData", JSON.stringify(userData));
+      navigate("/list");
+    }
+  }, [userData]);
+
+  return (
+    <>
+      <h1
+        style={{
+          backgroundColor: "yellow",
+          margin: "10rem",
+          textAlign: "center",
+          color: "red",
+          fontSize: "30px",
+          fontWeight: "bold"
+        }}
+      >
+        로그인 중입니다~~
+      </h1>
+    </>
+  );
 };
 
 export default Kakao;
