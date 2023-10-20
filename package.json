@@ -12,6 +12,7 @@
   "dependencies": {
     "@emotion/eslint-plugin": "^11.11.0",
     "@emotion/react": "^11.11.1",
+    "axios": "^1.5.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-react-app": "^7.0.1",
     "react": "^18.2.0",

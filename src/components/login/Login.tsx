@@ -18,8 +18,6 @@ const Login: React.FC = () => {
 
   const loginWithKakao = () => {
     window.location.href = link;
-
-    console.log(location.href);
   };
 
   return (

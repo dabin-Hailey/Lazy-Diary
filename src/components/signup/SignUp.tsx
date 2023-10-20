@@ -9,9 +9,9 @@ import {
   loginTitle
 } from "../../styles";
 
-const SignUp = () => {
+const SignUp: React.FC = () => {
   return (
-    <div css={signupWrapper}>
+    <div css={signUpWrapper}>
       <h1 css={loginTitle}>회원가입</h1>
       <form css={loginForm}>
         <p css={loginFormText}>이메일</p>
@@ -39,7 +39,7 @@ const SignUp = () => {
 
 export default SignUp;
 
-const signupWrapper = css`
+const signUpWrapper = css`
   margin: 10rem auto;
 
   display: flex;
