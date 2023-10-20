@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { colors } from "../../styles";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div css={footerWrapper}>
       <div css={footerTextWrapper}>

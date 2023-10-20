@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { colors, defaultBtn } from "../../styles";
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <div css={headerWrapper}>
       <div css={headerLeft}>

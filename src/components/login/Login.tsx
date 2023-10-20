@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { colors, reverseBtn } from "../../styles";
 
-const Login = () => {
+const Login: React.FC = () => {
   return (
     <div css={loginWrapper}>
       <h1 css={loginTitle}>로그인</h1>
