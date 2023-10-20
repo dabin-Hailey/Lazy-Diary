@@ -28,7 +28,9 @@ const Login = () => {
         </button>
       </form>
       <button css={signUpBtn}>회원가입</button>
-      <p css={loginText}>또는</p>
+      <div css={loginTextWrapper}>
+        <p css={loginText}>또는</p>
+      </div>
       <button css={kakaoLoginBtn}>
         <img src="/images/kakao_login_large_wide.png"></img>
       </button>
@@ -111,10 +113,38 @@ const signUpBtn = css`
   }
 `;
 
+const loginTextWrapper = css`
+  width: 35rem;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ::before {
+    content: "";
+    position: relative;
+    top: 50%;
+    width: 43%;
+    transform: translateY(50%);
+    border-top: 1px solid rgba(95, 65, 65, 0.5);
+    border-bottom: 0;
+  }
+
+  ::after {
+    content: "";
+    position: relative;
+    top: 50%;
+    width: 43%;
+    transform: translateY(50%);
+    border-top: 1px solid rgba(95, 65, 65, 0.5);
+    border-bottom: 0;
+  }
+`;
+
 const loginText = css`
   font-size: 1.5rem;
-  margin: 3rem;
   color: ${colors.primaryColor};
+  white-space: nowrap;
 `;
 
 const kakaoLoginBtn = css`
