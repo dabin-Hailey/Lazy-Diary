@@ -127,7 +127,6 @@ const loginTextWrapper = css`
     width: 43%;
     transform: translateY(50%);
     border-top: 1px solid rgba(95, 65, 65, 0.5);
-    border-bottom: 0;
   }
 
   ::after {
@@ -137,7 +136,6 @@ const loginTextWrapper = css`
     width: 43%;
     transform: translateY(50%);
     border-top: 1px solid rgba(95, 65, 65, 0.5);
-    border-bottom: 0;
   }
 `;
 
