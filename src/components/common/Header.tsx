@@ -1,14 +1,14 @@
 // import { useState } from "react";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import colors from "../../colors";
+import { colors, defaultBtn } from "../../styles";
 
 const Header = () => {
   return (
     <div css={headerWrapper}>
       <div css={headerLeft}>
         <div css={profilePhoto}>
-          <img src="../../public/images/profile-image.jpg" />
+          <img src="/images/profile-image.jpg" />
         </div>
         <div css={headerTitle}>김다빈님의 일기</div>
       </div>
@@ -56,18 +56,7 @@ const headerTitle = css`
 `;
 
 const logoutBtn = css`
-  font-size: 2rem;
-  font-weight: bold;
-  color: ${colors.secondaryColor};
-  white-space: nowrap;
-  border: 2px solid #a44a4a;
-  border-radius: 1rem;
-  padding: 0.5rem 2rem;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: ${colors.secondaryColor};
-    color: ${colors.bgColor};
-    cursor: pointer;
+  ${defaultBtn} & {
+    padding: 0.5rem 2rem;
   }
 `;

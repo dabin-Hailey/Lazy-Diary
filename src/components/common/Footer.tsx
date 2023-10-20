@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import colors from "../../colors";
+import { colors } from "../../styles";
 
 const Footer = () => {
   return (
@@ -22,13 +22,13 @@ const Footer = () => {
         <a href="https://github.com/dabin-Hailey/Lazy-Diary">
           <img
             css={footerIcon}
-            src="../../public/images/github.png"
+            src="/images/github.png"
           />
         </a>
         <a href="https://velog.io/@mary0393">
           <img
             css={footerIcon}
-            src="../../public/images/blog.png"
+            src="/images/blog.png"
           />
         </a>
       </div>
