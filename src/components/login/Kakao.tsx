@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useResultContext } from "../../Contexts/LoginContext";
 
 interface KakaoProfile {
   id?: string | "";
@@ -12,8 +11,6 @@ interface KakaoProfile {
 }
 
 const Kakao = () => {
-  const { isLogined, setIsLogined } = useResultContext();
-
   const navigate = useNavigate();
   const [userData, setUserData] = useState<KakaoProfile>({});
 
@@ -67,22 +64,22 @@ const Kakao = () => {
             };
 
             setUserData(newUserData);
-            setIsLogined(true);
+            // setIsLogined(true);
           })
           .catch((error) => console.log("사용자 정보 받기 실패", error));
       })
       .catch((error) => console.log("토큰 받기 실패", error));
   };
 
-  useEffect(() => {
-    fetchData();
-    console.log(isLogined);
+  // useEffect(() => {
+  //   fetchData();
+  //   console.log(isLogined);
 
-    if (userData && isLogined) {
-      localStorage.setItem("userData", JSON.stringify(userData));
-      navigate("/list");
-    }
-  }, [userData, isLogined]);
+  //   if (userData && isLogined) {
+  //     localStorage.setItem("userData", JSON.stringify(userData));
+  //     navigate("/list");
+  //   }
+  // }, [userData, isLogined]);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useResultContext } from "../../Contexts/LoginContext";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -11,10 +11,8 @@ import {
   loginTitle,
   reverseBtn
 } from "../../styles";
-import { useEffect } from "react";
 
 const Login: React.FC = () => {
-  const { isLogined } = useResultContext();
   const navigate = useNavigate();
   const pathname = window.location.pathname;
   const userData = localStorage.getItem("userData");
@@ -27,15 +25,15 @@ const Login: React.FC = () => {
     window.location.href = link;
   };
 
-  useEffect(() => {
-    console.log(isLogined);
+  // useEffect(() => {
+  //   console.log(isLogined);
 
-    if (!isLogined || !userData) {
-      navigate("/");
-    } else if (isLogined && userData) {
-      navigate("/list");
-    }
-  }, [navigate, pathname]);
+  //   if (!isLogined || !userData) {
+  //     navigate("/");
+  //   } else if (isLogined && userData) {
+  //     navigate("/list");
+  //   }
+  // }, [navigate, pathname]);
 
   return (
     <div css={loginWrapper}>
