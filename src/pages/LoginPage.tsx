@@ -1,9 +1,15 @@
+import React, { useState } from "react";
 import Login from "../components/login/Login";
 
 const LoginPage = () => {
+  const [userData, setUserData] = useState({});
+
   return (
     <div>
-      <Login />
+      <Login
+        userData={userData}
+        setUserData={setUserData}
+      />
     </div>
   );
 };

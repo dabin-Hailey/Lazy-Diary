@@ -1,7 +1,7 @@
 import React from "react";
 
-const ListPage = () => {
-  return <div>ListPage</div>;
+const ListPage: React.FC = () => {
+  return <div>List Page</div>;
 };
 
 export default ListPage;

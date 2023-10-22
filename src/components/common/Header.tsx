@@ -1,24 +1,47 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors, defaultBtn } from "../../styles";
+import { useNavigate } from "react-router-dom";
+import { handleGoogleLogout } from "../../utils/utils";
 
 const Header: React.FC = () => {
+  const navigate = useNavigate();
+  const pathname = window.location.pathname;
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
+
   return (
     <div css={headerWrapper}>
       <div css={headerLeft}>
         <div css={profilePhoto}>
-          <img src="/images/profile-image.jpg" />
+          {pathname !== "/" &&
+          currentUser !== null &&
+          currentUser.profile_image_url !== null ? (
+            <img src={currentUser.profile_image_url} />
+          ) : (
+            <img src="/images/favicon.png" />
+          )}
         </div>
         <div
           css={headerTitle}
           onClick={() => {
-            window.location.href = "/";
+            navigate("/");
           }}
         >
-          김다빈님의 일기
+          {pathname !== "/" &&
+          currentUser !== null &&
+          currentUser.nickname !== null
+            ? `${currentUser.nickname} 님의 일기`
+            : `Lazy Diary`}
         </div>
       </div>
-      <div css={logoutBtn}>Log Out</div>
+      {pathname !== "/" && (
+        <div
+          css={logoutBtn}
+          onClick={handleGoogleLogout}
+        >
+          Log Out
+        </div>
+      )}
     </div>
   );
 };

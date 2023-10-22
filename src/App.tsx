@@ -1,4 +1,3 @@
-import { ResultContextProvider } from "./Contexts/LoginContext";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Header from "./components/common/Header";
@@ -20,35 +19,33 @@ function App() {
   };
 
   return (
-    <ResultContextProvider>
-      <Routes>
+    <Routes>
+      <Route
+        path="/"
+        element={<Layout />}
+      >
         <Route
-          path="/"
-          element={<Layout />}
-        >
-          <Route
-            index
-            element={<LoginPage />}
-          />
-          <Route
-            path="oauth/kakao/callback"
-            element={<Redirect />}
-          />
-          <Route
-            path="signup"
-            element={<SignUpPage />}
-          />
-          <Route
-            path="list"
-            element={<ListPage />}
-          />
-          <Route
-            path="edit"
-            element={<EditPage />}
-          />
-        </Route>
-      </Routes>
-    </ResultContextProvider>
+          index
+          element={<LoginPage />}
+        />
+        <Route
+          path="oauth/kakao/callback"
+          element={<Redirect />}
+        />
+        <Route
+          path="signup"
+          element={<SignUpPage />}
+        />
+        <Route
+          path="list"
+          element={<ListPage />}
+        />
+        <Route
+          path="edit"
+          element={<EditPage />}
+        />
+      </Route>
+    </Routes>
   );
 }
 

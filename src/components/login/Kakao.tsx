@@ -10,7 +10,7 @@ interface KakaoProfile {
   recentLoginLog?: number | null;
 }
 
-const Kakao = () => {
+const Kakao: React.FC = () => {
   const navigate = useNavigate();
   const [userData, setUserData] = useState<KakaoProfile>({});
 

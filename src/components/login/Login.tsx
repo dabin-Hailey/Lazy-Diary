@@ -1,5 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../../firebase.config";
+import { onAuthStateChanged } from "firebase/auth";
+
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import {
@@ -11,11 +14,23 @@ import {
   loginTitle,
   reverseBtn
 } from "../../styles";
+import GoogleLogin from "./login functions/GoogleLogin";
 
-const Login: React.FC = () => {
+interface UserData {
+  id?: string | null;
+  nickname?: string | null;
+  profile_image_url?: string | null;
+  recentLoginLog?: number | null;
+}
+
+interface LoginType {
+  userData: UserData;
+  setUserData: (userData: UserData) => void;
+}
+
+const Login: React.FC<LoginType> = ({ userData, setUserData }) => {
   const navigate = useNavigate();
   const pathname = window.location.pathname;
-  const userData = localStorage.getItem("userData");
 
   const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
   const REDIRECT_URI: string = import.meta.env.VITE_REDIRECT_URI;
@@ -25,15 +40,15 @@ const Login: React.FC = () => {
     window.location.href = link;
   };
 
-  // useEffect(() => {
-  //   console.log(isLogined);
-
-  //   if (!isLogined || !userData) {
-  //     navigate("/");
-  //   } else if (isLogined && userData) {
-  //     navigate("/list");
-  //   }
-  // }, [navigate, pathname]);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        navigate("/");
+      } else if (user && pathname === "/") {
+        navigate("/list");
+      }
+    });
+  }, [auth, navigate, pathname]);
 
   return (
     <div css={loginWrapper}>
@@ -68,6 +83,7 @@ const Login: React.FC = () => {
       >
         <img src="/images/kakao_login_large_wide.png"></img>
       </button>
+      <GoogleLogin setUserData={setUserData} />
     </div>
   );
 };
@@ -134,12 +150,14 @@ const kakaoLoginBtn = css`
   padding: 0;
   border: none;
   background-color: transparent;
+  transition: all 0.2s ease-in-out;
 
   img {
     width: 35rem;
 
     :hover {
       cursor: pointer;
+      transform: scale(1.03);
     }
   }
 `;
