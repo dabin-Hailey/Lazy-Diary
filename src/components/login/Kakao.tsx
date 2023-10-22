@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-// import { KakaoProfile } from "../../types/User.ts";
+import { useNavigate } from "react-router-dom";
+import { useResultContext } from "../../Contexts/LoginContext";
 
 interface KakaoProfile {
   id?: string | "";
@@ -12,9 +12,10 @@ interface KakaoProfile {
 }
 
 const Kakao = () => {
+  const { isLogined, setIsLogined } = useResultContext();
+
   const navigate = useNavigate();
   const [userData, setUserData] = useState<KakaoProfile>({});
-  const [isLogined, setIsLogined] = useState<boolean>(false);
 
   //카카오에서 받은 인가코드
   const AUTHORIZE_CODE: string | null = new URLSearchParams(
@@ -75,12 +76,13 @@ const Kakao = () => {
 
   useEffect(() => {
     fetchData();
+    console.log(isLogined);
 
     if (userData && isLogined) {
       localStorage.setItem("userData", JSON.stringify(userData));
       navigate("/list");
     }
-  }, [userData]);
+  }, [userData, isLogined]);
 
   return (
     <>
