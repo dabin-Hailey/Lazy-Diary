@@ -1,9 +1,9 @@
-import { auth } from "../../../firebase.config";
+import { auth } from "../../firebase.config";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { colors, reverseBtn } from "../../../styles";
+import { colors, reverseBtn } from "../../styles";
 
 interface UserData {
   id?: string | null;

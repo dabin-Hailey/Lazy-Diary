@@ -1,19 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-interface KakaoProfile {
-  id?: string | "";
-  nickname?: string | "";
-  profile_image_url?: string | "";
-  thumbnail_image_url?: string | "";
+interface UserData {
+  id?: string | null;
+  nickname?: string | null;
+  profile_image_url?: string | null;
   recentLoginLog?: number | null;
 }
 
-const Kakao: React.FC = () => {
-  const navigate = useNavigate();
-  const [userData, setUserData] = useState<KakaoProfile>({});
+interface LoginType {
+  setUserData: (userData: UserData) => void;
+}
 
+const Kakao: React.FC<LoginType> = ({ setUserData }) => {
   //카카오에서 받은 인가코드
   const AUTHORIZE_CODE: string | null = new URLSearchParams(
     window.location.search
@@ -51,35 +50,27 @@ const Kakao: React.FC = () => {
           .then((response) => {
             const { id, kakao_account } = response.data;
             const { profile } = kakao_account;
-            const { nickname, profile_image_url, thumbnail_image_url } =
-              profile;
+            const { nickname, profile_image_url } = profile;
             const recentLoginLog = Date.now(); //최근 로그인 기록
 
-            const newUserData: KakaoProfile = {
+            const newUserData: UserData = {
               id,
               nickname,
               profile_image_url,
-              thumbnail_image_url,
               recentLoginLog
             };
 
             setUserData(newUserData);
-            // setIsLogined(true);
+            localStorage.setItem("userData", JSON.stringify(newUserData));
           })
           .catch((error) => console.log("사용자 정보 받기 실패", error));
       })
       .catch((error) => console.log("토큰 받기 실패", error));
   };
 
-  // useEffect(() => {
-  //   fetchData();
-  //   console.log(isLogined);
-
-  //   if (userData && isLogined) {
-  //     localStorage.setItem("userData", JSON.stringify(userData));
-  //     navigate("/list");
-  //   }
-  // }, [userData, isLogined]);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>

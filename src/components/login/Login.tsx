@@ -14,7 +14,7 @@ import {
   loginTitle,
   reverseBtn
 } from "../../styles";
-import GoogleLogin from "./login functions/GoogleLogin";
+import GoogleLogin from "./Google";
 
 interface UserData {
   id?: string | null;
