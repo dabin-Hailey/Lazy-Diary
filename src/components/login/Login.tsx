@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase.config";
 import { onAuthStateChanged } from "firebase/auth";
+import GoogleLogin from "./Google";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -14,7 +15,6 @@ import {
   loginTitle,
   reverseBtn
 } from "../../styles";
-import GoogleLogin from "./Google";
 
 interface UserData {
   id?: string | null;

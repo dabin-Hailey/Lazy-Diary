@@ -98,3 +98,88 @@ export const loginBtn = css`
     padding: 1rem 0;
   }
 `;
+
+// 이모지 관련 css
+export const emojiWrapper = css`
+  width: 100%;
+  // height: 21rem;
+
+  box-sizing: border-box;
+  padding: 2rem auto;
+
+  border: none;
+  border-radius: 1rem;
+  background-color: ${colors.secondBGColor};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  fieldset {
+    border: none;
+  }
+`;
+
+export const emojiTitle = css`
+  font-size: 2rem;
+  font-weight: bold;
+  color: ${colors.secondaryColor};
+  margin-top: 2rem;
+`;
+
+export const selectEmoji = css`
+  min-width: 500px;
+  width: 70%;
+  height: 65%;
+  margin-bottom: 2rem;
+
+  img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  label {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease-in-out;
+
+    input {
+      width: 10rem;
+    }
+
+    :hover {
+      transform: scale(1.15);
+    }
+  }
+
+  input[type="radio"] + label {
+    width: 20%;
+    height: 100%;
+
+    border: none;
+    border-radius: 1rem;
+
+    line-height: 2.3rem;
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.5rem;
+    color: ${colors.primaryColor};
+
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  input[type="radio"]:checked + label {
+    background-color: rgba(164, 74, 74, 0.4);
+    font-weight: bold;
+  }
+`;
