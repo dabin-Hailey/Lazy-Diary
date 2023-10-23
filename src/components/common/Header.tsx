@@ -2,12 +2,30 @@
 import { css } from "@emotion/react";
 import { colors, defaultBtn } from "../../styles";
 import { useNavigate } from "react-router-dom";
-import { handleGoogleLogout } from "../../utils/utils";
+import { handleGoogleLogout, handleKakaoLogout } from "../../utils/utils";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const pathname = window.location.pathname;
   const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
+
+  const handleLogout = () => {
+    if (currentUser.platform === "kakao") {
+      handleKakaoLogout();
+      navigate("/");
+    } else if (currentUser.platform === "google") {
+      handleGoogleLogout();
+      navigate("/");
+    }
+  };
+
+  const handleClickLogo = () => {
+    if (currentUser !== null) {
+      navigate("/list");
+    } else if (pathname) {
+      navigate("/");
+    }
+  };
 
   return (
     <div css={headerWrapper}>
@@ -23,9 +41,7 @@ const Header: React.FC = () => {
         </div>
         <div
           css={headerTitle}
-          onClick={() => {
-            navigate("/");
-          }}
+          onClick={handleClickLogo}
         >
           {pathname !== "/" &&
           currentUser !== null &&
@@ -37,7 +53,7 @@ const Header: React.FC = () => {
       {pathname !== "/" && (
         <div
           css={logoutBtn}
-          onClick={handleGoogleLogout}
+          onClick={handleLogout}
         >
           Log Out
         </div>

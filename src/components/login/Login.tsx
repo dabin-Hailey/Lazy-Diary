@@ -21,6 +21,8 @@ interface UserData {
   nickname?: string | null;
   profile_image_url?: string | null;
   recentLoginLog?: number | null;
+  platform?: string | null;
+  access_token?: string | null;
 }
 
 interface LoginType {

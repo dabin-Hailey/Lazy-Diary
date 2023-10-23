@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface UserData {
   id?: string | null;
   nickname?: string | null;
   profile_image_url?: string | null;
   recentLoginLog?: number | null;
+  platform?: string | null;
+  access_token?: string | null;
 }
 
 interface LoginType {
@@ -13,6 +16,8 @@ interface LoginType {
 }
 
 const Kakao: React.FC<LoginType> = ({ setUserData }) => {
+  const navigate = useNavigate();
+
   //카카오에서 받은 인가코드
   const AUTHORIZE_CODE: string | null = new URLSearchParams(
     window.location.search
@@ -33,8 +38,8 @@ const Kakao: React.FC<LoginType> = ({ setUserData }) => {
         }
       )
       .then((response) => {
-        const { access_token: ACCESS_TOKEN } = response.data;
-
+        const { access_token } = response.data;
+        const ACCESS_TOKEN = access_token;
         axios
           .post(
             "https://kapi.kakao.com/v2/user/me",
@@ -52,16 +57,20 @@ const Kakao: React.FC<LoginType> = ({ setUserData }) => {
             const { profile } = kakao_account;
             const { nickname, profile_image_url } = profile;
             const recentLoginLog = Date.now(); //최근 로그인 기록
+            const platform = "kakao";
 
             const newUserData: UserData = {
               id,
               nickname,
               profile_image_url,
-              recentLoginLog
+              recentLoginLog,
+              platform,
+              access_token
             };
 
-            setUserData(newUserData);
+            // setUserData(newUserData);
             localStorage.setItem("userData", JSON.stringify(newUserData));
+            navigate("/list");
           })
           .catch((error) => console.log("사용자 정보 받기 실패", error));
       })

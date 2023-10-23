@@ -10,6 +10,8 @@ interface UserData {
   nickname?: string | null;
   profile_image_url?: string | null;
   recentLoginLog?: number | null;
+  platform?: string | null;
+  access_token?: string | null;
 }
 
 interface LoginType {
@@ -28,12 +30,14 @@ const GoogleLogin: React.FC<LoginType> = ({ setUserData }) => {
           uid: id
         } = result.user;
         const recentLoginLog = Date.now(); //최근 로그인 기록
+        const platform = "google";
 
         const newUserData: UserData = {
           id,
           nickname,
           profile_image_url,
-          recentLoginLog
+          recentLoginLog,
+          platform
         };
         setUserData(newUserData);
         localStorage.setItem("userData", JSON.stringify(newUserData));
