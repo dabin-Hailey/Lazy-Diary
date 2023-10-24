@@ -1,19 +1,72 @@
+import { useRef, useState } from "react";
+import { addImage, setData } from "../utils/utils";
+import { DiaryInputs, UserData } from "../@types/types";
+import EditEmoji from "../components/edit/EditEmoji";
+import EditPost from "../components/edit/EditPost";
+import EditPhoto from "../components/edit/EditPhoto";
+import EditHeader from "../components/edit/EditHeader";
+
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors } from "../styles";
 
-import EditHeader from "../components/edit/EditHeader";
-import EditEmoji from "../components/edit/EditEmoji";
-import EditPost from "../components/edit/EditPost";
-import EditPicture from "../components/edit/EditPicture";
-
 const EditPage: React.FC = () => {
+  const currentUser: UserData = JSON.parse(
+    localStorage.getItem("userData") || "{}"
+  );
+
+  const [imgPath, setImgPath] = useState("");
+  const [inputs, setInputs] = useState<DiaryInputs>({
+    title: "",
+    date: 0,
+    feeling: "",
+    weather: "",
+    meeting: "",
+    activity: "",
+    post: "",
+    photoName: "",
+    photoURL: ""
+  });
+
+  const handleChange = (e: React.ChangeEvent) => {
+    const { value, name } = e.target as HTMLInputElement;
+    setInputs({ ...inputs, [name]: value });
+    console.log(inputs);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const date = Date.now();
+    // const imageURL = addImage();
+
+    console.log(e);
+    setInputs({
+      ...inputs,
+      date,
+      feeling: form.feeling.value,
+      weather: form.weather.value,
+      meeting: form.meeting.value,
+      activity: form.activity.value
+    });
+
+    setData(currentUser.id, inputs);
+    console.log(inputs);
+  };
+
   return (
-    <form css={EditWrapper}>
-      <EditHeader />
+    <form
+      css={EditWrapper}
+      onSubmit={handleSubmit}
+    >
+      <EditHeader handleChange={handleChange} />
       <EditEmoji />
-      <EditPost />
-      <EditPicture />
+      <EditPost handleChange={handleChange} />
+      <EditPhoto
+        imgPath={imgPath}
+        setImgPath={setImgPath}
+      />
     </form>
   );
 };

@@ -3,18 +3,7 @@ import { auth, db, storage } from "../firebase.config";
 import { signOut } from "firebase/auth";
 import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-
-interface DiaryProps {
-  title: string;
-  date: string;
-  feeling: string;
-  weather: string;
-  meeting: string;
-  activity: string;
-  post?: string;
-  photoName?: string;
-  photoURL?: string;
-}
+import { DiaryInputs } from "../@types/types";
 
 //구글 로그아웃
 export const handleGoogleLogout = () => {
@@ -50,11 +39,13 @@ export const handleKakaoLogout = () => {
 
 //파이어베이스 utils
 //추가
-export const setData = async (userId: string, props: DiaryProps) => {
+export const setData = async (userId: string | null, props: DiaryInputs) => {
   const date = new Date();
   const dataId = `${userId}-${date.getTime()}`;
+  const data = { ...props, dataId };
+  const docName = `user-${userId}`;
 
-  await setDoc(doc(db, userId, dataId), props);
+  await setDoc(doc(db, docName, dataId), data);
 };
 
 //읽기
@@ -69,7 +60,7 @@ export const getData = async (collectionName: string, dataId: string) => {
 export const updateData = async (
   collectionName: string,
   dataId: string,
-  props: DiaryProps
+  props: DiaryInputs
 ) => {
   await setDoc(doc(db, collectionName, dataId), props);
 };

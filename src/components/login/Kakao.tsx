@@ -1,21 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserData } from "../../@types/types";
 
-interface UserData {
-  id?: string | null;
-  nickname?: string | null;
-  profile_image_url?: string | null;
-  recentLoginLog?: number | null;
-  platform?: string | null;
-  access_token?: string | null;
-}
-
-interface LoginType {
-  setUserData: (userData: UserData) => void;
-}
-
-const Kakao: React.FC<LoginType> = ({ setUserData }) => {
+const Kakao: React.FC = () => {
   const navigate = useNavigate();
 
   //카카오에서 받은 인가코드
@@ -68,7 +56,6 @@ const Kakao: React.FC<LoginType> = ({ setUserData }) => {
               access_token
             };
 
-            // setUserData(newUserData);
             localStorage.setItem("userData", JSON.stringify(newUserData));
             navigate("/list");
           })

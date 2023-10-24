@@ -16,21 +16,7 @@ import {
   reverseBtn
 } from "../../styles";
 
-interface UserData {
-  id?: string | null;
-  nickname?: string | null;
-  profile_image_url?: string | null;
-  recentLoginLog?: number | null;
-  platform?: string | null;
-  access_token?: string | null;
-}
-
-interface LoginType {
-  userData: UserData;
-  setUserData: (userData: UserData) => void;
-}
-
-const Login: React.FC<LoginType> = ({ userData, setUserData }) => {
+const Login: React.FC = () => {
   const navigate = useNavigate();
   const pathname = window.location.pathname;
 
@@ -85,7 +71,7 @@ const Login: React.FC<LoginType> = ({ userData, setUserData }) => {
       >
         <img src="/images/kakao_login_large_wide.png"></img>
       </button>
-      <GoogleLogin setUserData={setUserData} />
+      <GoogleLogin />
     </div>
   );
 };

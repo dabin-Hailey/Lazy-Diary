@@ -114,7 +114,61 @@ export const editWrapperCommon = css`
   gap: 1rem;
 `;
 
-// 이모지 관련 css
+export const EditHeaderWrapper = css`
+  width: 100%;
+  height: 5.5rem;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  input {
+    width: 70%;
+    height: 100%;
+
+    padding: 0 2rem;
+
+    font-size: 2.3rem;
+    font-weight: bold;
+    color: ${colors.secondaryColor};
+
+    background-color: ${colors.secondBGColor};
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+
+    ::placeholder {
+      font-style: italic;
+      font-size: 2rem;
+      color: #8e8e8e;
+      font-weight: normal;
+    }
+
+    :focus {
+      border: none;
+      outline: 1px solid ${colors.secondaryColor};
+      box-shadow: 0 0 0.7rem ${colors.secondaryColor};
+    }
+  }
+`;
+
+export const BtnWrapper = css`
+  width: 20%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+
+  button {
+    width: 50%;
+    height: 100%;
+  }
+`;
+
 export const emojiWrapper = css`
   ${editWrapperCommon}
 
@@ -223,15 +277,11 @@ export const postWrapper = css`
     }
   }
 `;
+
 export const photoWrapper = css`
   ${editWrapperCommon}
 
-  input {
-    display: flex;
-  }
-
-  img {
-    width: 400px;
-    height: 400px;
+  input[type="file"] {
+    display: none;
   }
 `;

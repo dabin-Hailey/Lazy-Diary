@@ -1,45 +1,27 @@
-import { auth } from "../../firebase.config";
-import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors, reverseBtn } from "../../styles";
+import { UserData } from "../../@types/types";
+import { auth } from "../../firebase.config";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
-interface UserData {
-  id?: string | null;
-  nickname?: string | null;
-  profile_image_url?: string | null;
-  recentLoginLog?: number | null;
-  platform?: string | null;
-  access_token?: string | null;
-}
-
-interface LoginType {
-  setUserData: (userData: UserData) => void;
-}
-
-const GoogleLogin: React.FC<LoginType> = ({ setUserData }) => {
+const GoogleLogin: React.FC = () => {
   const provider = new GoogleAuthProvider();
 
   const loginWithGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
-        const {
-          displayName: nickname,
-          photoURL: profile_image_url,
-          uid: id
-        } = result.user;
+        const { displayName, photoURL, uid } = result.user;
         const recentLoginLog = Date.now(); //최근 로그인 기록
         const platform = "google";
 
         const newUserData: UserData = {
-          id,
-          nickname,
-          profile_image_url,
+          id: uid,
+          nickName: displayName,
+          photoURL,
           recentLoginLog,
           platform
         };
-        setUserData(newUserData);
         localStorage.setItem("userData", JSON.stringify(newUserData));
       })
       .catch((error) => console.log(error));
