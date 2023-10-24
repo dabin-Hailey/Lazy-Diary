@@ -1,6 +1,4 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { colors, emojiTitle } from "../../styles";
+import { emojiTitle, postWrapper } from "../../styles";
 
 const EditPost: React.FC = () => {
   return (
@@ -12,54 +10,3 @@ const EditPost: React.FC = () => {
 };
 
 export default EditPost;
-
-const postWrapper = css`
-  width: 100%;
-
-  box-sizing: border-box;
-  border: none;
-  border-radius: 1rem;
-  background-color: ${colors.secondBGColor};
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-
-  textarea {
-    resize: none;
-    width: 85%;
-    height: 10rem;
-
-    margin-bottom: 2rem;
-    padding: 1rem;
-    box-sizing: border-box;
-
-    font-size: 1.8rem;
-    font-weight: normal;
-    color: ${colors.primaryColor};
-
-    background-color: transparent;
-    // outline: 1px solid ${colors.secondaryColor};
-    border: none;
-
-    ::placeholder {
-      font-style: italic;
-      font-size: 1.6rem;
-      color: #8e8e8e;
-      font-weight: normal;
-      text-align: start;
-    }
-
-    :focus {
-      border: none;
-      outline: 1px solid ${colors.secondaryColor};
-      box-shadow: 0 0 0.7rem ${colors.secondaryColor};
-    }
-
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  }
-`;

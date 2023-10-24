@@ -99,13 +99,10 @@ export const loginBtn = css`
   }
 `;
 
-// 이모지 관련 css
-export const emojiWrapper = css`
+export const editWrapperCommon = css`
   width: 100%;
 
   box-sizing: border-box;
-  padding: 2rem auto;
-
   border: none;
   border-radius: 1rem;
   background-color: ${colors.secondBGColor};
@@ -115,6 +112,11 @@ export const emojiWrapper = css`
   align-items: center;
   justify-content: center;
   gap: 1rem;
+`;
+
+// 이모지 관련 css
+export const emojiWrapper = css`
+  ${editWrapperCommon}
 
   fieldset {
     border: none;
@@ -179,5 +181,57 @@ export const selectEmoji = css`
   input[type="radio"]:checked + label {
     background-color: rgba(164, 74, 74, 0.4);
     font-weight: bold;
+  }
+`;
+
+export const postWrapper = css`
+  ${editWrapperCommon}
+
+  textarea {
+    resize: none;
+    width: 85%;
+    height: 10rem;
+
+    margin-bottom: 2rem;
+    padding: 1rem;
+    box-sizing: border-box;
+
+    font-size: 1.8rem;
+    font-weight: normal;
+    color: ${colors.primaryColor};
+
+    background-color: transparent;
+    // outline: 1px solid ${colors.secondaryColor};
+    border: none;
+
+    ::placeholder {
+      font-style: italic;
+      font-size: 1.6rem;
+      color: #8e8e8e;
+      font-weight: normal;
+      text-align: start;
+    }
+
+    :focus {
+      border: none;
+      outline: 1px solid ${colors.secondaryColor};
+      box-shadow: 0 0 0.7rem ${colors.secondaryColor};
+    }
+
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+`;
+export const photoWrapper = css`
+  ${editWrapperCommon}
+
+  input {
+    display: flex;
+  }
+
+  img {
+    width: 400px;
+    height: 400px;
   }
 `;
