@@ -102,7 +102,6 @@ export const loginBtn = css`
 // 이모지 관련 css
 export const emojiWrapper = css`
   width: 100%;
-  // height: 21rem;
 
   box-sizing: border-box;
   padding: 2rem auto;
@@ -130,8 +129,7 @@ export const emojiTitle = css`
 `;
 
 export const selectEmoji = css`
-  min-width: 500px;
-  width: 70%;
+  width: 90%;
   height: 65%;
   margin-bottom: 2rem;
 

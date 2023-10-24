@@ -21,6 +21,8 @@ const EditPage: React.FC = () => {
 export default EditPage;
 
 const EditWrapper = css`
+  max-width: 1200px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,5 +31,5 @@ const EditWrapper = css`
 
   background-color: ${colors.bgColor};
 
-  margin: 5rem 3rem;
+  margin: 5rem auto;
 `;

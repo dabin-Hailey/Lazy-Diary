@@ -7,7 +7,7 @@ const EditEmoji: React.FC = () => {
     <div css={editEmojiWrapper}>
       {/* feeling - 무드 */}
       <fieldset
-        name="mood"
+        name="feeling"
         css={emojiWrapper}
       >
         <div css={emojiTitle}>어떤 하루였나요?</div>
