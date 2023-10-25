@@ -7,23 +7,30 @@ import { DiaryInputs } from "../../@types/types";
 const Item: React.FC<DiaryInputs> = ({
   id,
   title,
+  year,
+  month,
   date,
+  day,
   feeling,
   weather,
   meeting,
-  activity
+  activity,
+  post
 }) => {
   return (
     <div css={itemWrapper}>
       <div css={itemTitleWrapper}>
         <p css={itemTitle}>{title}</p>
-        <p css={itemDate}>최근 수정일: {date}</p>
+        <p css={itemDate}>
+          최근 수정일: {year}.{month}.{date}({day})
+        </p>
       </div>
+      {post && <p css={itemText}>{post}</p>}
       <div css={itemImgWrapper}>
-        <img src={feeling} />
-        <img src={weather} />
-        <img src={meeting} />
-        <img src={activity} />
+        <img src={"/images/" + feeling + ".png"} />
+        <img src={"/images/" + weather + ".png"} />
+        <img src={"/images/" + meeting + ".png"} />
+        <img src={"/images/" + activity + ".png"} />
       </div>
     </div>
   );
@@ -33,7 +40,7 @@ export default Item;
 
 const itemWrapper = css`
   width: 100%;
-  padding: 1rem 3rem;
+  padding: 2rem 3rem;
 
   box-sizing: border-box;
   border: none;
@@ -45,11 +52,11 @@ const itemWrapper = css`
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
+  gap: 1rem;
 `;
 
 const itemTitleWrapper = css`
   width: 100%;
-  height: 5rem;
 
   display: flex;
   flex-direction: row;
@@ -61,17 +68,34 @@ const itemTitle = css`
   font-size: 2.3rem;
   font-weight: bold;
   color: ${colors.secondaryColor};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
 `;
 
 const itemDate = css`
   font-size: 1.8rem;
   font-weight: normal;
   color: ${colors.primaryColor};
+  white-space: nowrap;
+
+  margin: 0;
+`;
+
+const itemText = css`
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: ${colors.primaryColor};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
 `;
 
 const itemImgWrapper = css`
   width: 100%;
-  margin: 1rem auto;
 
   display: flex;
   flex-direction: row;

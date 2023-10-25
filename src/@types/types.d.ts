@@ -11,7 +11,10 @@ export interface DiaryInputs {
   key?: string;
   id: string;
   title?: string;
+  year?: number;
+  month?: number;
   date?: number;
+  day?: string;
   feeling?: string;
   weather?: string;
   meeting?: string;

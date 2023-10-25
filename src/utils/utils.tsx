@@ -47,12 +47,12 @@ export const handleKakaoLogout = () => {
 //추가
 export const setData = async (userId: string | null, props: DiaryInputs) => {
   const collectionName = `user-${userId}`;
-  const dataId = `${userId}-${Date.now()}`;
+  const dataId = `${userId}-${new Date().getTime()}`;
 
   await setDoc(doc(db, collectionName, dataId), props);
 };
 
-//단일 문서 읽기
+//읽기
 export const getData = async (
   collectionName: string
 ): Promise<DiaryInputs[]> => {

@@ -3,59 +3,6 @@ import { css } from "@emotion/react";
 import { emojiTitle, emojiWrapper, selectEmoji } from "../../styles";
 
 const EditEmoji: React.FC = () => {
-  const emojiValue = {
-    "feeling-excited":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Ffeeling-excited.png?alt=media&token=ed759631-0237-4c82-bb76-6ef106739e89",
-    "feeling-angry":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Ffeeling-angry.png?alt=media&token=db2eb657-d82c-4c4d-8ac8-78155536f5ba",
-    "feeling-happy":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Ffeeling-happy.png?alt=media&token=1cd12bf3-9343-4144-a41c-6c913ebae6ec",
-    "feeling-sad":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Ffeeling-sad.png?alt=media&token=d7a130a2-3b3c-443e-9b59-4b85d1ff13db",
-    "feeling-soso":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Ffeeling-soso.png?alt=media&token=25ab4aff-b421-40e7-84b6-a32ec6a9faf9",
-    "activity-exercise":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-exercise.png?alt=media&token=7216c7a0-3756-4d7d-8233-7943735aa6bd",
-    "activity-game":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-game.png?alt=media&token=1ee13dd9-29ca-4288-8641-0442b3fff9a5",
-    "activity-movie":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-movie.png?alt=media&token=bdea9c95-f2ad-456f-8e21-8a14ddabc2c1",
-    "activity-music":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-music.png?alt=media&token=46673992-f219-4941-b5e1-e20e3f26eb37",
-    "activity-play":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-play.png?alt=media&token=47a42a42-2571-41cb-9b7b-1295665de215",
-    "activity-reading":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-reading.png?alt=media&token=089147c9-32fa-440e-8b3e-fac8a9af7eb1",
-    "activity-relax":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-relax.png?alt=media&token=6e4c763a-8ac6-4579-8961-495cc80077b2",
-    "activity-restaurant":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-restaurant.png?alt=media&token=e1c40461-2df1-452d-bde2-4bd1a4f488e9",
-    "activity-shopping":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-shopping.png?alt=media&token=ecc35b16-6ee0-4612-a340-0488ec042916",
-    "activity-travel":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-travel.png?alt=media&token=a867a17b-2038-497b-8cfd-909b2197ca76",
-    "meeting-acquaintance":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fmeeting-acquaintance.png?alt=media&token=6104649e-66f9-4799-9404-a66d716dfc31",
-    "meeting-couple":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fmeeting-couple.png?alt=media&token=abddc16d-de3d-4c9b-bd94-52c795c0fd9c",
-    "meeting-family":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fmeeting-family.png?alt=media&token=e841b109-f3b6-460b-ac78-69f925861cbb",
-    "meeting-friend":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fmeeting-friend.png?alt=media&token=72497d6d-2512-470f-9a19-976b955e2753",
-    "meeting-no":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fmeeting-no.png?alt=media&token=857787bc-e779-4aec-9051-9aeab53558af",
-    "weather-sunny":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fweather-sunny.png?alt=media&token=76919e06-f5d6-454f-a271-ddf0e69646a1",
-    "weather-cloudy":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fweather-cloudy.png?alt=media&token=db4a5792-11a0-4119-96ac-bd500632dce1",
-    "weather-rainy":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fweather-rainy.png?alt=media&token=9997b758-d0b7-46b2-9b67-32ca6858cdb8",
-    "weather-snowy":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fweather-snowy.png?alt=media&token=1614a8d1-a283-4ee0-85c4-cb2a268217e6",
-    "weather-windy":
-      "https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Fweather-windy.png?alt=media&token=c2eafd5e-e22c-4d80-9197-c75ab2fd3e2b"
-  };
-
   return (
     <div css={editEmojiWrapper}>
       {/* feeling - 무드 */}
@@ -68,7 +15,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="feeling-excited"
-            value={emojiValue["feeling-excited"]}
+            value="feeling-excited"
             name="feeling"
             required
           />
@@ -79,7 +26,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="feeling-happy"
-            value={emojiValue["feeling-happy"]}
+            value="feeling-happy"
             name="feeling"
             required
           />
@@ -90,7 +37,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="feeling-soso"
-            value={emojiValue["feeling-soso"]}
+            value="feeling-soso"
             name="feeling"
             required
           />
@@ -101,7 +48,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="feeling-sad"
-            value={emojiValue["feeling-sad"]}
+            value="feeling-sad"
             name="feeling"
             required
           />
@@ -112,7 +59,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="feeling-angry"
-            value={emojiValue["feeling-angry"]}
+            value="feeling-angry"
             name="feeling"
             required
           />
@@ -132,7 +79,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="weather-sunny"
-            value={emojiValue["weather-sunny"]}
+            value="weather-sunny"
             name="weather"
             required
           />
@@ -143,7 +90,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="weather-cloudy"
-            value={emojiValue["weather-cloudy"]}
+            value="weather-cloudy"
             name="weather"
             required
           />
@@ -154,7 +101,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="weather-windy"
-            value={emojiValue["weather-windy"]}
+            value="weather-windy"
             name="weather"
             required
           />
@@ -165,7 +112,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="weather-rainy"
-            value={emojiValue["weather-rainy"]}
+            value="weather-rainy"
             name="weather"
             required
           />
@@ -176,7 +123,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="weather-snowy"
-            value={emojiValue["weather-snowy"]}
+            value="weather-snowy"
             name="weather"
             required
           />
@@ -196,7 +143,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="meeting-friend"
-            value={emojiValue["meeting-friend"]}
+            value="meeting-friend"
             name="meeting"
             required
           />
@@ -207,7 +154,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="meeting-family"
-            value={emojiValue["meeting-family"]}
+            value="meeting-family"
             name="meeting"
             required
           />
@@ -218,7 +165,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="meeting-couple"
-            value={emojiValue["meeting-couple"]}
+            value="meeting-couple"
             name="meeting"
             required
           />
@@ -229,7 +176,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="meeting-acquaintance"
-            value={emojiValue["meeting-acquaintance"]}
+            value="meeting-acquaintance"
             name="meeting"
             required
           />
@@ -240,7 +187,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="meeting-no"
-            value={emojiValue["meeting-no"]}
+            value="meeting-no"
             name="meeting"
             required
           />
@@ -260,7 +207,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-exercise"
-            value={emojiValue["activity-exercise"]}
+            value="https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-exercise.png?alt=media&token=7216c7a0-3756-4d7d-8233-7943735aa6bd"
             name="activity"
             required
           />
@@ -271,7 +218,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-game"
-            value={emojiValue["activity-game"]}
+            value="activity-game"
             name="activity"
             required
           />
@@ -282,7 +229,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-movie"
-            value={emojiValue["activity-movie"]}
+            value="activity-movie"
             name="activity"
             required
           />
@@ -293,7 +240,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-music"
-            value={emojiValue["activity-music"]}
+            value="activity-music"
             name="activity"
             required
           />
@@ -308,7 +255,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-reading"
-            value={emojiValue["activity-reading"]}
+            value="activity-reading"
             name="activity"
             required
           />
@@ -319,7 +266,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-restaurant"
-            value={emojiValue["activity-restaurant"]}
+            value="activity-restaurant"
             name="activity"
             required
           />
@@ -330,7 +277,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-shopping"
-            value={emojiValue["activity-shopping"]}
+            value="activity-shopping"
             name="activity"
             required
           />
@@ -341,7 +288,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-play"
-            value={emojiValue["activity-play"]}
+            value="activity-play"
             name="activity"
             required
           />
@@ -352,7 +299,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-travel"
-            value={emojiValue["activity-travel"]}
+            value="activity-travel"
             name="activity"
             required
           />
@@ -363,7 +310,7 @@ const EditEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-relax"
-            value={emojiValue["activity-relax"]}
+            value="activity-relax"
             name="activity"
             required
           />

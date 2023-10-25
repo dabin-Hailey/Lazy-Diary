@@ -24,24 +24,39 @@ const ListPage: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [diaryList]);
+  }, []);
 
   return (
     <div css={ListWrapper}>
       <ListNav />
       {diaryList.map((item) => {
-        const { id, title, date, feeling, weather, meeting, activity } =
-          item as DiaryInputs;
+        const {
+          id,
+          title,
+          year,
+          month,
+          date,
+          day,
+          feeling,
+          weather,
+          meeting,
+          activity,
+          post
+        } = item as DiaryInputs;
         return (
           <Item
             key={id}
             id={id}
             title={title}
+            year={year}
+            month={month}
             date={date}
+            day={day}
             feeling={feeling}
             weather={weather}
             meeting={meeting}
             activity={activity}
+            post={post}
           />
         );
       })}
