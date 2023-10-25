@@ -1,7 +1,13 @@
 import axios from "axios";
 import { auth, db, storage } from "../firebase.config";
 import { signOut } from "firebase/auth";
-import { doc, getDoc, setDoc, deleteDoc } from "firebase/firestore";
+import {
+  doc,
+  collection,
+  getDocs,
+  setDoc,
+  deleteDoc
+} from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { DiaryInputs } from "../@types/types";
 
@@ -40,18 +46,24 @@ export const handleKakaoLogout = () => {
 //파이어베이스 utils
 //추가
 export const setData = async (userId: string | null, props: DiaryInputs) => {
-  const docName = `user-${userId}`;
+  const collectionName = `user-${userId}`;
   const dataId = `${userId}-${Date.now()}`;
 
-  await setDoc(doc(db, docName, dataId), props);
+  await setDoc(doc(db, collectionName, dataId), props);
 };
 
-//읽기
-export const getData = async (collectionName: string, dataId: string) => {
-  const docSnap = await getDoc(doc(db, collectionName, dataId));
-
-  const diaryData = docSnap.data();
-  console.log(diaryData);
+//단일 문서 읽기
+export const getData = async (
+  collectionName: string
+): Promise<DiaryInputs[]> => {
+  const querySnapshot = await getDocs(collection(db, collectionName));
+  const docs = querySnapshot.docs.map((doc) => {
+    return {
+      ...doc.data(),
+      id: doc.id
+    };
+  });
+  return docs;
 };
 
 //수정

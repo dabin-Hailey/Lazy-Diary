@@ -8,12 +8,14 @@ export interface UserData {
 }
 
 export interface DiaryInputs {
-  title: string;
-  date: number;
-  feeling: string;
-  weather: string;
-  meeting: string;
-  activity: string;
+  key?: string;
+  id: string;
+  title?: string;
+  date?: number;
+  feeling?: string;
+  weather?: string;
+  meeting?: string;
+  activity?: string;
   post?: string | undefined;
   photoName?: string | undefined;
   photoURL?: string | undefined;
