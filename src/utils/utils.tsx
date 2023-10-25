@@ -40,12 +40,10 @@ export const handleKakaoLogout = () => {
 //파이어베이스 utils
 //추가
 export const setData = async (userId: string | null, props: DiaryInputs) => {
-  const date = new Date();
-  const dataId = `${userId}-${date.getTime()}`;
-  const data = { ...props, dataId };
   const docName = `user-${userId}`;
+  const dataId = `${userId}-${Date.now()}`;
 
-  await setDoc(doc(db, docName, dataId), data);
+  await setDoc(doc(db, docName, dataId), props);
 };
 
 //읽기
