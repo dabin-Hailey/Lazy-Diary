@@ -1,6 +1,8 @@
 import React from "react";
-import { DiaryInputs } from "../../@types/types";
+import { ListItems } from "../../@types/types";
 import {
+  BtnWrapper,
+  itemBtnWrapper,
   itemDate,
   itemImgWrapper,
   itemText,
@@ -9,7 +11,7 @@ import {
   itemWrapper
 } from "../../styles";
 
-const Item: React.FC<DiaryInputs> = ({
+const Item: React.FC<ListItems> = ({
   id,
   title,
   year,
@@ -20,10 +22,14 @@ const Item: React.FC<DiaryInputs> = ({
   weather,
   meeting,
   activity,
-  post
+  post,
+  handleModal
 }) => {
   return (
-    <div css={itemWrapper}>
+    <div
+      css={itemWrapper}
+      onClick={handleModal}
+    >
       <div css={itemTitleWrapper}>
         <p css={itemTitle}>{title}</p>
         <p css={itemDate}>
@@ -31,11 +37,25 @@ const Item: React.FC<DiaryInputs> = ({
         </p>
       </div>
       {post && <p css={itemText}>{post}</p>}
-      <div css={itemImgWrapper}>
-        <img src={"/images/" + feeling + ".png"} />
-        <img src={"/images/" + weather + ".png"} />
-        <img src={"/images/" + meeting + ".png"} />
-        <img src={"/images/" + activity + ".png"} />
+      <div css={itemTitleWrapper}>
+        <div css={itemImgWrapper}>
+          <img src={"/images/" + feeling + ".png"} />
+          <img src={"/images/" + weather + ".png"} />
+          <img src={"/images/" + meeting + ".png"} />
+          <img src={"/images/" + activity + ".png"} />
+        </div>
+        <div css={itemBtnWrapper}>
+          <button
+          // onClick={handleReset}
+          >
+            수정
+          </button>
+          <button
+          // onClick={handleModal}
+          >
+            삭제
+          </button>
+        </div>
       </div>
     </div>
   );

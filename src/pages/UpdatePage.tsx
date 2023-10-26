@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { addImage, setData } from "../utils/utils";
 import { DiaryInputs, UserData } from "../@types/types";
-import EditEmoji from "../components/edit/EditEmoji";
-import EditPost from "../components/edit/EditPost";
-import EditPhoto from "../components/edit/EditPhoto";
-import EditHeader from "../components/edit/EditHeader";
+import CreateEmoji from "../components/create/CreateEmoji";
+import CreatePost from "../components/create/CreatePost";
+import CreatePhoto from "../components/create/CreatePhoto";
+import CreateHeader from "../components/create/CreateHeader";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors } from "../styles";
 import { useNavigate } from "react-router-dom";
 
-const EditPage: React.FC = () => {
+const CreatePage: React.FC = () => {
   const navigate = useNavigate();
 
   const currentUser: UserData = JSON.parse(
@@ -76,13 +76,13 @@ const EditPage: React.FC = () => {
   console.log(imgFile);
   return (
     <form
-      css={EditWrapper}
+      css={CreateWrapper}
       onSubmit={handleSubmit}
     >
-      <EditHeader handleChange={handleChange} />
-      <EditEmoji />
-      <EditPost handleChange={handleChange} />
-      <EditPhoto
+      <CreateHeader handleChange={handleChange} />
+      <CreateEmoji />
+      <CreatePost handleChange={handleChange} />
+      <CreatePhoto
         imgPath={imgPath}
         setImgPath={setImgPath}
         setImgFile={setImgFile}
@@ -91,9 +91,9 @@ const EditPage: React.FC = () => {
   );
 };
 
-export default EditPage;
+export default CreatePage;
 
-const EditWrapper = css`
+const CreateWrapper = css`
   max-width: 1200px;
 
   display: flex;

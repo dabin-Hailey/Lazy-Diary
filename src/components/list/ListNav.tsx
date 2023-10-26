@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const ListNav: React.FC = () => {
   const navigate = useNavigate();
   const handleCreate = () => {
-    navigate("/edit");
+    navigate("/create");
   };
 
   return (

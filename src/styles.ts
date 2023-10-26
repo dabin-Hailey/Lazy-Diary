@@ -99,7 +99,7 @@ export const loginBtn = css`
   }
 `;
 
-export const editWrapperCommon = css`
+export const createWrapperCommon = css`
   width: 100%;
 
   box-sizing: border-box;
@@ -114,7 +114,7 @@ export const editWrapperCommon = css`
   gap: 1rem;
 `;
 
-export const EditHeaderWrapper = css`
+export const CreateHeaderWrapper = css`
   width: 100%;
   height: 5.5rem;
 
@@ -170,7 +170,7 @@ export const BtnWrapper = css`
 `;
 
 export const emojiWrapper = css`
-  ${editWrapperCommon}
+  ${createWrapperCommon}
 
   fieldset {
     border: none;
@@ -239,7 +239,7 @@ export const selectEmoji = css`
 `;
 
 export const postWrapper = css`
-  ${editWrapperCommon}
+  ${createWrapperCommon}
 
   textarea {
     resize: none;
@@ -279,7 +279,7 @@ export const postWrapper = css`
 `;
 
 export const photoWrapper = css`
-  ${editWrapperCommon}
+  ${createWrapperCommon}
 
   input[type="file"] {
     display: none;
@@ -308,6 +308,8 @@ export const itemWrapper = css`
   align-items: start;
   justify-content: space-between;
   gap: 1rem;
+
+  cursor: pointer;
 `;
 
 export const itemTitleWrapper = css`
@@ -361,5 +363,30 @@ export const itemImgWrapper = css`
   img {
     width: 5rem;
     height: 5rem;
+  }
+`;
+
+export const itemBtnWrapper = css`
+  ${BtnWrapper}
+
+  width: 20%;
+
+  button {
+    ${defaultBtn}
+
+    width: 50%;
+    height: 100%;
+    padding: 1rem;
+
+    border: 1px solid ${colors.primaryColor};
+
+    font-size: 1.5rem;
+    color: ${colors.primaryColor};
+    font-weight: normal;
+
+    :hover {
+      background-color: ${colors.primaryColor};
+      border: 1px solid ${colors.primaryColor};
+    }
   }
 `;

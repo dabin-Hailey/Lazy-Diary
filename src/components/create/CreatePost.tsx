@@ -4,7 +4,7 @@ interface Props {
   handleChange: (e: React.ChangeEvent) => void;
 }
 
-const EditPost: React.FC<Props> = ({ handleChange }) => {
+const CreatePost: React.FC<Props> = ({ handleChange }) => {
   return (
     <div css={postWrapper}>
       <div css={emojiTitle}>한 줄 일기</div>
@@ -17,4 +17,4 @@ const EditPost: React.FC<Props> = ({ handleChange }) => {
   );
 };
 
-export default EditPost;
+export default CreatePost;

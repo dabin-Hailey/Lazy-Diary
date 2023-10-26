@@ -22,3 +22,7 @@ export interface DiaryInputs {
   post?: string | undefined;
   photoURL?: string | undefined;
 }
+
+export interface ListItems extends DiaryInputs {
+  handleModal: () => void;
+}

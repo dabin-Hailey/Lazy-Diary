@@ -1,6 +1,6 @@
 import {
   BtnWrapper,
-  EditHeaderWrapper,
+  CreateHeaderWrapper,
   defaultBtn,
   reverseBtn
 } from "../../styles";
@@ -9,13 +9,13 @@ interface Props {
   handleChange: (e: React.ChangeEvent) => void;
 }
 
-const EditHeader: React.FC<Props> = ({ handleChange }) => {
+const CreateHeader: React.FC<Props> = ({ handleChange }) => {
   const handleReset = () => {
     window.location.href = "/list";
   };
 
   return (
-    <div css={EditHeaderWrapper}>
+    <div css={CreateHeaderWrapper}>
       <input
         type="text"
         placeholder="제목을 입력하세요."
@@ -42,4 +42,4 @@ const EditHeader: React.FC<Props> = ({ handleChange }) => {
   );
 };
 
-export default EditHeader;
+export default CreateHeader;

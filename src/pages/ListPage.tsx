@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { DiaryInputs, UserData } from "../@types/types";
 import ListNav from "../components/list/ListNav";
 import Item from "../components/list/Item";
+import { getData } from "../utils/utils";
+
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors, itemWrapper } from "../styles";
-import { getData } from "../utils/utils";
-import { DiaryInputs, UserData } from "../@types/types";
 
 const ListPage: React.FC = () => {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+
+  const [diaryList, setDiaryList] = useState<DiaryInputs[]>([]);
   const currentUser: UserData = JSON.parse(
     localStorage.getItem("userData") || "{}"
   );
 
-  const [diaryList, setDiaryList] = useState<DiaryInputs[]>([]);
+  const handleModal = () => {
+    setIsDeleteModalOpen(!isDeleteModalOpen);
+  };
 
   const fetchData = async () => {
     if (currentUser.id) {
@@ -59,6 +65,7 @@ const ListPage: React.FC = () => {
               meeting={meeting}
               activity={activity}
               post={post}
+              handleModal={handleModal}
             />
           );
         })}

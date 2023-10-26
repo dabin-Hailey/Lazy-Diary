@@ -2,9 +2,9 @@
 import { css } from "@emotion/react";
 import { emojiTitle, emojiWrapper, selectEmoji } from "../../styles";
 
-const EditEmoji: React.FC = () => {
+const CreateEmoji: React.FC = () => {
   return (
-    <div css={editEmojiWrapper}>
+    <div css={createEmojiWrapper}>
       {/* feeling - 무드 */}
       <fieldset
         name="feeling"
@@ -324,9 +324,9 @@ const EditEmoji: React.FC = () => {
   );
 };
 
-export default EditEmoji;
+export default CreateEmoji;
 
-const editEmojiWrapper = css`
+const createEmojiWrapper = css`
   width: 100%;
 
   display: flex;

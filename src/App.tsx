@@ -4,7 +4,7 @@ import Header from "./components/common/Header";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ListPage from "./pages/ListPage";
-import EditPage from "./pages/EditPage";
+import CreatePage from "./pages/CreatePage";
 import Redirect from "./pages/Redirect";
 
 function App() {
@@ -41,8 +41,8 @@ function App() {
           element={<ListPage />}
         />
         <Route
-          path="edit"
-          element={<EditPage />}
+          path="create"
+          element={<CreatePage />}
         />
       </Route>
     </Routes>

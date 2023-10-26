@@ -7,7 +7,11 @@ interface OwnProps {
   setImgFile: (imgFile: File) => void;
 }
 
-const EditPhoto: React.FC<OwnProps> = ({ imgPath, setImgPath, setImgFile }) => {
+const CreatePhoto: React.FC<OwnProps> = ({
+  imgPath,
+  setImgPath,
+  setImgFile
+}) => {
   const imgRef = useRef<HTMLInputElement>(null);
   const MAX_IMAGE_SIZE_BYTES = 1024 * 1024 * 2;
 
@@ -50,4 +54,4 @@ const EditPhoto: React.FC<OwnProps> = ({ imgPath, setImgPath, setImgFile }) => {
   );
 };
 
-export default EditPhoto;
+export default CreatePhoto;
