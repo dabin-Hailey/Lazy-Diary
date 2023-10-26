@@ -1,17 +1,14 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { emojiTitle, photoWrapper } from "../../styles";
 
-interface OwnProps {
-  imgPath: string;
-  setImgPath: (imgPath: string) => void;
+interface PhotoProps {
+  photoURL: string | undefined;
   setImgFile: (imgFile: File) => void;
 }
 
-const CreatePhoto: React.FC<OwnProps> = ({
-  imgPath,
-  setImgPath,
-  setImgFile
-}) => {
+const UpdatePhoto: React.FC<PhotoProps> = ({ photoURL, setImgFile }) => {
+  const [imgPath, setImgPath] = useState<string | undefined>(photoURL);
+
   const imgRef = useRef<HTMLInputElement>(null);
   const MAX_IMAGE_SIZE_BYTES = 1024 * 1024 * 2;
 
@@ -54,4 +51,4 @@ const CreatePhoto: React.FC<OwnProps> = ({
   );
 };
 
-export default CreatePhoto;
+export default UpdatePhoto;

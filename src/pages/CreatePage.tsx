@@ -14,9 +14,7 @@ import { useNavigate } from "react-router-dom";
 const EditPage: React.FC = () => {
   const navigate = useNavigate();
 
-  const currentUser: UserData = JSON.parse(
-    localStorage.getItem("userData") || "{}"
-  );
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   const [imgFile, setImgFile] = useState<File>();
   const [imgPath, setImgPath] = useState("");
@@ -44,17 +42,18 @@ const EditPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const form = e.target as HTMLFormElement;
+
+    const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
+    const dateNow = String(Date.now());
+    const now = new Date();
+    const year = now.getFullYear(); // 년도
+    const month = now.getMonth() + 1; // 월
+    const date = now.getDate(); // 날짜
+    const day = WEEKDAY[now.getDay()]; // 요일
+
     if (imgFile) {
       const imageURL = await addImage(imgFile);
-      const form = e.target as HTMLFormElement;
-
-      const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
-      const dateNow = String(Date.now());
-      const now = new Date();
-      const year = now.getFullYear(); // 년도
-      const month = now.getMonth() + 1; // 월
-      const date = now.getDate(); // 날짜
-      const day = WEEKDAY[now.getDay()]; // 요일
 
       await setData(currentUser.id, {
         ...inputs,
@@ -69,11 +68,10 @@ const EditPage: React.FC = () => {
         activity: form.activity.value,
         photoURL: imageURL
       });
-      navigate("/list");
     }
+    navigate("/list");
   };
 
-  console.log(imgFile);
   return (
     <form
       css={EditWrapper}

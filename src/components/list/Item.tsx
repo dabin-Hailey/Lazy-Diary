@@ -1,7 +1,6 @@
 import React from "react";
 import { ListItems } from "../../@types/types";
 import {
-  BtnWrapper,
   itemBtnWrapper,
   itemDate,
   itemImgWrapper,
@@ -10,6 +9,7 @@ import {
   itemTitleWrapper,
   itemWrapper
 } from "../../styles";
+import { useNavigate } from "react-router-dom";
 
 const Item: React.FC<ListItems> = ({
   id,
@@ -25,6 +25,11 @@ const Item: React.FC<ListItems> = ({
   post,
   handleModal
 }) => {
+  const navigate = useNavigate();
+  const handleUpdate = (id: string) => {
+    navigate(`/update/${id}`);
+  };
+
   return (
     <div
       css={itemWrapper}
@@ -45,11 +50,7 @@ const Item: React.FC<ListItems> = ({
           <img src={"/images/" + activity + ".png"} />
         </div>
         <div css={itemBtnWrapper}>
-          <button
-          // onClick={handleReset}
-          >
-            수정
-          </button>
+          <button onClick={() => handleUpdate(id)}>수정</button>
           <button
           // onClick={handleModal}
           >

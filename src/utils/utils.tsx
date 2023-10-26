@@ -5,8 +5,11 @@ import {
   doc,
   collection,
   getDocs,
+  getDoc,
   setDoc,
-  deleteDoc
+  deleteDoc,
+  query,
+  where
 } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { DiaryInputs } from "../@types/types";
@@ -37,7 +40,7 @@ export const handleKakaoLogout = () => {
         }
       }
     )
-    .then((response) => {
+    .then(() => {
       localStorage.removeItem("userData");
     })
     .catch((error) => console.log("카카오 로그아웃 에러", error));
@@ -47,12 +50,12 @@ export const handleKakaoLogout = () => {
 //추가
 export const setData = async (userId: string | null, props: DiaryInputs) => {
   const collectionName = `user-${userId}`;
-  const dataId = `${userId}-${new Date().getTime()}`;
+  const docId = `${userId}-${new Date().getTime()}`;
 
-  await setDoc(doc(db, collectionName, dataId), props);
+  await setDoc(doc(db, collectionName, docId), props);
 };
 
-//읽기
+//모든 문서 읽기
 export const getData = async (
   collectionName: string
 ): Promise<DiaryInputs[]> => {
@@ -64,6 +67,18 @@ export const getData = async (
     };
   });
   return docs;
+};
+
+//문서 하나 읽기
+export const getDataByField = async (collectionName: string, docId: string) => {
+  const docRef = doc(db, collectionName, docId);
+  const docSnap = await getDoc(docRef);
+  if (docSnap.exists()) {
+    return {
+      ...docSnap.data(),
+      id: docSnap.data().id as string
+    };
+  }
 };
 
 //수정

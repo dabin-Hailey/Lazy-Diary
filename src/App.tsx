@@ -6,6 +6,7 @@ import SignUpPage from "./pages/SignUpPage";
 import ListPage from "./pages/ListPage";
 import CreatePage from "./pages/CreatePage";
 import Redirect from "./pages/Redirect";
+import UpdatePage from "./pages/UpdatePage";
 
 function App() {
   const Layout = () => {
@@ -43,6 +44,10 @@ function App() {
         <Route
           path="create"
           element={<CreatePage />}
+        />
+        <Route
+          path="update/:id"
+          element={<UpdatePage />}
         />
       </Route>
     </Routes>

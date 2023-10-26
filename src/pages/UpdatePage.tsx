@@ -1,25 +1,25 @@
-import { useState } from "react";
-import { addImage, setData } from "../utils/utils";
+import { useEffect, useState } from "react";
+import { addImage, getDataByField, setData } from "../utils/utils";
 import { DiaryInputs, UserData } from "../@types/types";
-import CreateEmoji from "../components/create/CreateEmoji";
-import CreatePost from "../components/create/CreatePost";
-import CreatePhoto from "../components/create/CreatePhoto";
-import CreateHeader from "../components/create/CreateHeader";
+import UpdateEmoji from "../components/update/UpdateEmoji";
+import UpdatePost from "../components/update/UpdatePost";
+import UpdatePhoto from "../components/update/UpdatePhoto";
+import UpdateHeader from "../components/update/UpdateHeader";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors } from "../styles";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const CreatePage: React.FC = () => {
+const UpdatePage: React.FC = () => {
+  const params = useParams();
+  const docId = params.id;
   const navigate = useNavigate();
 
   const currentUser: UserData = JSON.parse(
     localStorage.getItem("userData") || "{}"
   );
 
-  const [imgFile, setImgFile] = useState<File>();
-  const [imgPath, setImgPath] = useState("");
   const [inputs, setInputs] = useState<DiaryInputs>({
     id: "",
     title: "",
@@ -35,6 +35,11 @@ const CreatePage: React.FC = () => {
     photoURL: ""
   });
 
+  const { title, feeling, weather, meeting, activity, post, photoURL } =
+    inputs as DiaryInputs;
+
+  const [imgFile, setImgFile] = useState<File>();
+
   //text로 입력하는 항목 저장 (title, post)
   const handleChange = (e: React.ChangeEvent) => {
     const { value, name } = e.target as HTMLInputElement;
@@ -44,21 +49,18 @@ const CreatePage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const form = e.target as HTMLFormElement;
+    const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
+    const now = new Date();
+    const year = now.getFullYear(); // 년도
+    const month = now.getMonth() + 1; // 월
+    const date = now.getDate(); // 날짜
+    const day = WEEKDAY[now.getDay()]; // 요일
+
     if (imgFile) {
-      const imageURL = await addImage(imgFile);
-      const form = e.target as HTMLFormElement;
-
-      const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
-      const dateNow = String(Date.now());
-      const now = new Date();
-      const year = now.getFullYear(); // 년도
-      const month = now.getMonth() + 1; // 월
-      const date = now.getDate(); // 날짜
-      const day = WEEKDAY[now.getDay()]; // 요일
-
+      const imageURL = await addImage(imgFile as File);
       await setData(currentUser.id, {
         ...inputs,
-        id: dateNow,
         year,
         month,
         date,
@@ -69,31 +71,66 @@ const CreatePage: React.FC = () => {
         activity: form.activity.value,
         photoURL: imageURL
       });
-      navigate("/list");
+    } else {
+      await setData(currentUser.id, {
+        ...inputs,
+        year,
+        month,
+        date,
+        day,
+        feeling: form.feeling.value,
+        weather: form.weather.value,
+        meeting: form.meeting.value,
+        activity: form.activity.value
+      });
+    }
+    navigate("/list");
+  };
+
+  const fetchData = async () => {
+    if (currentUser.id && docId) {
+      const userId = `user-${currentUser.id}`;
+      const response = await getDataByField(userId, docId);
+      if (response) {
+        setInputs(response);
+      }
     }
   };
 
-  console.log(imgFile);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <form
-      css={CreateWrapper}
+      css={UpdateWrapper}
       onSubmit={handleSubmit}
     >
-      <CreateHeader handleChange={handleChange} />
-      <CreateEmoji />
-      <CreatePost handleChange={handleChange} />
-      <CreatePhoto
-        imgPath={imgPath}
-        setImgPath={setImgPath}
+      <UpdateHeader
+        title={title}
+        handleChange={handleChange}
+      />
+      <UpdateEmoji
+        feeling={feeling}
+        weather={weather}
+        meeting={meeting}
+        activity={activity}
+      />
+      <UpdatePost
+        post={post}
+        handleChange={handleChange}
+      />
+      <UpdatePhoto
+        photoURL={photoURL}
         setImgFile={setImgFile}
       />
     </form>
   );
 };
 
-export default CreatePage;
+export default UpdatePage;
 
-const CreateWrapper = css`
+const UpdateWrapper = css`
   max-width: 1200px;
 
   display: flex;
