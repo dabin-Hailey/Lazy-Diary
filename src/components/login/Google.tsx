@@ -17,7 +17,7 @@ const GoogleLogin: React.FC = () => {
 
         const newUserData: UserData = {
           id: uid,
-          nickName: displayName,
+          nickname: displayName,
           photoURL,
           recentLoginLog,
           platform

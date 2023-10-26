@@ -1,6 +1,6 @@
 export interface UserData {
   id: string | null;
-  nickName: string | null;
+  nickname: string | null;
   photoURL: string | null;
   recentLoginLog: number | null;
   platform: string | null;
@@ -20,6 +20,5 @@ export interface DiaryInputs {
   meeting?: string;
   activity?: string;
   post?: string | undefined;
-  photoName?: string | undefined;
   photoURL?: string | undefined;
 }

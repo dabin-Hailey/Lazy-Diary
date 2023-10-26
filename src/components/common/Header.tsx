@@ -33,8 +33,8 @@ const Header: React.FC = () => {
         <div css={profilePhoto}>
           {pathname !== "/" &&
           currentUser !== null &&
-          currentUser.profile_image_url !== null ? (
-            <img src={currentUser.profile_image_url} />
+          currentUser.photoURL !== null ? (
+            <img src={currentUser.photoURL} />
           ) : (
             <img src="/images/favicon.png" />
           )}

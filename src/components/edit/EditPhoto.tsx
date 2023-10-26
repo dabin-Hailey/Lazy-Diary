@@ -1,31 +1,29 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { emojiTitle, photoWrapper } from "../../styles";
 
 interface OwnProps {
   imgPath: string;
-  setImgPath: (file: string) => void;
+  setImgPath: (imgPath: string) => void;
+  setImgFile: (imgFile: File) => void;
 }
 
-const EditPhoto: React.FC<OwnProps> = ({ imgPath, setImgPath }) => {
-  const [imgFile, setImgFile] = useState<File>();
+const EditPhoto: React.FC<OwnProps> = ({ imgPath, setImgPath, setImgFile }) => {
   const imgRef = useRef<HTMLInputElement>(null);
   const MAX_IMAGE_SIZE_BYTES = 1024 * 1024 * 2;
 
   const previewImage = () => {
     if (imgRef.current && imgRef.current.files) {
-      const file = imgRef.current.files[0];
+      const img = imgRef.current.files[0];
 
-      if (file.size > MAX_IMAGE_SIZE_BYTES) {
+      if (img.size > MAX_IMAGE_SIZE_BYTES) {
         alert("최대 2MB까지 업로드 가능합니다.");
         return;
       }
-      setImgFile(file);
+      setImgFile(img);
 
       const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
+      reader.readAsDataURL(img);
+      reader.onload = () => {
         setImgPath(reader.result as string);
       };
     }
@@ -34,27 +32,22 @@ const EditPhoto: React.FC<OwnProps> = ({ imgPath, setImgPath }) => {
   return (
     <div css={photoWrapper}>
       <div css={emojiTitle}>오늘의 사진</div>
-      <label css={ImageLabel}>
-        <input
-          type="file"
-          id="photo"
-          name="photo"
-          accept=".png, .jpeg, .jpg"
-          onChange={previewImage}
-          ref={imgRef}
+      <label htmlFor="photo">
+        <img
+          src={imgPath ? imgPath : `/images/upload.png`}
+          alt="이미지 업로드"
         />
       </label>
+      <input
+        type="file"
+        id="photo"
+        name="photo"
+        accept=".png, .jpeg, .jpg"
+        onChange={previewImage}
+        ref={imgRef}
+      />
     </div>
   );
 };
 
 export default EditPhoto;
-
-const ImageLabel = css`
-  width: 400px;
-  height: 400px;
-
-  background: url(imgPath) center/cover;
-  // background: url(images/upload.png) center/cover;
-  cursor: pointer;
-`;

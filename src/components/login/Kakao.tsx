@@ -50,7 +50,7 @@ const Kakao: React.FC = () => {
             const newUserData: UserData = {
               id,
               nickname,
-              profile_image_url,
+              photoURL: profile_image_url,
               recentLoginLog,
               platform,
               access_token

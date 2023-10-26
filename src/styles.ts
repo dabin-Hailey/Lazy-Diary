@@ -284,4 +284,82 @@ export const photoWrapper = css`
   input[type="file"] {
     display: none;
   }
+
+  img {
+    width: 250px;
+    height: 250px;
+    margin-bottom: 2rem;
+    cursor: pointer;
+  }
+`;
+
+export const itemWrapper = css`
+  width: 100%;
+  padding: 2rem 3rem;
+
+  box-sizing: border-box;
+  border: none;
+  border-radius: 1rem;
+
+  background-color: ${colors.secondBGColor};
+
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+`;
+
+export const itemTitleWrapper = css`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const itemTitle = css`
+  font-size: 2.3rem;
+  font-weight: bold;
+  color: ${colors.secondaryColor};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+`;
+
+export const itemDate = css`
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: ${colors.primaryColor};
+  white-space: nowrap;
+
+  margin: 0;
+`;
+
+export const itemText = css`
+  width: 100%;
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: ${colors.primaryColor};
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: 0;
+`;
+
+export const itemImgWrapper = css`
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1.5rem;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+  }
 `;

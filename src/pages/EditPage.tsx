@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { setData } from "../utils/utils";
+import { addImage, setData } from "../utils/utils";
 import { DiaryInputs, UserData } from "../@types/types";
 import EditEmoji from "../components/edit/EditEmoji";
 import EditPost from "../components/edit/EditPost";
@@ -18,6 +18,7 @@ const EditPage: React.FC = () => {
     localStorage.getItem("userData") || "{}"
   );
 
+  const [imgFile, setImgFile] = useState<File>();
   const [imgPath, setImgPath] = useState("");
   const [inputs, setInputs] = useState<DiaryInputs>({
     id: "",
@@ -31,10 +32,10 @@ const EditPage: React.FC = () => {
     meeting: "",
     activity: "",
     post: "",
-    photoName: "",
     photoURL: ""
   });
 
+  //text로 입력하는 항목 저장 (title, post)
   const handleChange = (e: React.ChangeEvent) => {
     const { value, name } = e.target as HTMLInputElement;
     setInputs({ ...inputs, [name]: value });
@@ -42,33 +43,37 @@ const EditPage: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // const imageURL = addImage();
 
-    const form = e.target as HTMLFormElement;
+    if (imgFile) {
+      const imageURL = await addImage(imgFile);
+      const form = e.target as HTMLFormElement;
 
-    const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
-    const dateNow = String(new Date().getTime());
-    const now = new Date();
-    const year = now.getFullYear(); // 년도
-    const month = now.getMonth() + 1; // 월
-    const date = now.getDate(); // 날짜
-    const day = WEEKDAY[now.getDay()]; // 요일
+      const WEEKDAY = ["일", "월", "화", "수", "목", "금", "토"];
+      const dateNow = String(Date.now());
+      const now = new Date();
+      const year = now.getFullYear(); // 년도
+      const month = now.getMonth() + 1; // 월
+      const date = now.getDate(); // 날짜
+      const day = WEEKDAY[now.getDay()]; // 요일
 
-    await setData(currentUser.id, {
-      ...inputs,
-      id: dateNow,
-      year,
-      month,
-      date,
-      day,
-      feeling: form.feeling.value,
-      weather: form.weather.value,
-      meeting: form.meeting.value,
-      activity: form.activity.value
-    });
-    navigate("/list");
+      await setData(currentUser.id, {
+        ...inputs,
+        id: dateNow,
+        year,
+        month,
+        date,
+        day,
+        feeling: form.feeling.value,
+        weather: form.weather.value,
+        meeting: form.meeting.value,
+        activity: form.activity.value,
+        photoURL: imageURL
+      });
+      navigate("/list");
+    }
   };
 
+  console.log(imgFile);
   return (
     <form
       css={EditWrapper}
@@ -80,6 +85,7 @@ const EditPage: React.FC = () => {
       <EditPhoto
         imgPath={imgPath}
         setImgPath={setImgPath}
+        setImgFile={setImgFile}
       />
     </form>
   );

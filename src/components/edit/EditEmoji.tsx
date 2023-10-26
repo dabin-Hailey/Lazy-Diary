@@ -239,14 +239,14 @@ const EditEmoji: React.FC = () => {
           </label>
           <input
             type="radio"
-            id="activity-music"
-            value="activity-music"
+            id="activity-study"
+            value="activity-study"
             name="activity"
             required
           />
-          <label htmlFor="activity-music">
-            <img src="/images/activity-music.png" />
-            <p>음악</p>
+          <label htmlFor="activity-study">
+            <img src="/images/activity-study.png" />
+            <p>공부</p>
             {/* <input
               type="text"
               placeholder="기타"
