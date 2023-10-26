@@ -7,13 +7,14 @@ interface PhotoProps {
 }
 
 const UpdatePhoto: React.FC<PhotoProps> = ({ photoURL, setImgFile }) => {
-  const [imgPath, setImgPath] = useState<string | undefined>(photoURL);
+  const [imgPath, setImgPath] = useState<string>("");
 
   const imgRef = useRef<HTMLInputElement>(null);
   const MAX_IMAGE_SIZE_BYTES = 1024 * 1024 * 2;
 
   const previewImage = () => {
     if (imgRef.current && imgRef.current.files) {
+      console.log("바뀐 이미지");
       const img = imgRef.current.files[0];
 
       if (img.size > MAX_IMAGE_SIZE_BYTES) {
@@ -35,7 +36,7 @@ const UpdatePhoto: React.FC<PhotoProps> = ({ photoURL, setImgFile }) => {
       <div css={emojiTitle}>오늘의 사진</div>
       <label htmlFor="photo">
         <img
-          src={imgPath ? imgPath : `/images/upload.png`}
+          src={imgPath || photoURL || "/images/upload.png"}
           alt="이미지 미리보기"
         />
       </label>
