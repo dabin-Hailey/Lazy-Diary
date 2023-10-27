@@ -5,7 +5,7 @@ import {
   getDataByField,
   updateData
 } from "../utils/utils";
-import { DiaryInputs, UpdateInputs, UserData } from "../@types/types";
+import { DiaryInputs, UpdateInputs } from "../@types/types";
 import UpdateEmoji from "../components/update/UpdateEmoji";
 import UpdatePost from "../components/update/UpdatePost";
 import UpdatePhoto from "../components/update/UpdatePhoto";
