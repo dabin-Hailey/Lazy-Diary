@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { addImage, setData } from "../utils/utils";
-import { DiaryInputs, UserData } from "../@types/types";
+import { DiaryInputs } from "../@types/types";
 import EditEmoji from "../components/create/CreateEmoji";
 import EditPost from "../components/create/CreatePost";
 import EditPhoto from "../components/create/CreatePhoto";
 import EditHeader from "../components/create/CreateHeader";
+import { currentUser } from "../utils/utils";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -13,8 +14,6 @@ import { useNavigate } from "react-router-dom";
 
 const EditPage: React.FC = () => {
   const navigate = useNavigate();
-
-  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   const [imgFile, setImgFile] = useState<File>();
   const [imgPath, setImgPath] = useState("");
@@ -54,7 +53,6 @@ const EditPage: React.FC = () => {
 
     if (imgFile) {
       const imageURL = await addImage(imgFile);
-
       await setData(currentUser.id, {
         ...inputs,
         id: dateNow,
@@ -67,6 +65,19 @@ const EditPage: React.FC = () => {
         meeting: form.meeting.value,
         activity: form.activity.value,
         photoURL: imageURL
+      });
+    } else {
+      await setData(currentUser.id, {
+        ...inputs,
+        id: dateNow,
+        year,
+        month,
+        date,
+        day,
+        feeling: form.feeling.value,
+        weather: form.weather.value,
+        meeting: form.meeting.value,
+        activity: form.activity.value
       });
     }
     navigate("/list");

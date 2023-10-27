@@ -1,5 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { emojiTitle, photoWrapper } from "../../styles";
+import defaultImg from "/images/upload.png";
 
 interface PhotoProps {
   photoURL: string | undefined;
@@ -14,7 +15,6 @@ const UpdatePhoto: React.FC<PhotoProps> = ({ photoURL, setImgFile }) => {
 
   const previewImage = () => {
     if (imgRef.current && imgRef.current.files) {
-      console.log("바뀐 이미지");
       const img = imgRef.current.files[0];
 
       if (img.size > MAX_IMAGE_SIZE_BYTES) {
@@ -36,7 +36,7 @@ const UpdatePhoto: React.FC<PhotoProps> = ({ photoURL, setImgFile }) => {
       <div css={emojiTitle}>오늘의 사진</div>
       <label htmlFor="photo">
         <img
-          src={imgPath || photoURL || "/images/upload.png"}
+          src={imgPath || photoURL || defaultImg}
           alt="이미지 미리보기"
         />
       </label>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DiaryInputs, UserData } from "../@types/types";
 import ListNav from "../components/list/ListNav";
 import Item from "../components/list/Item";
-import { getData } from "../utils/utils";
+import { currentUser, getData } from "../utils/utils";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
@@ -12,9 +12,6 @@ const ListPage: React.FC = () => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
 
   const [diaryList, setDiaryList] = useState<DiaryInputs[]>([]);
-  const currentUser: UserData = JSON.parse(
-    localStorage.getItem("userData") || "{}"
-  );
 
   const handleModal = () => {
     setIsDeleteModalOpen(!isDeleteModalOpen);

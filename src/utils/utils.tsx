@@ -8,11 +8,12 @@ import {
   getDoc,
   setDoc,
   deleteDoc,
-  query,
-  where
+  updateDoc
 } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { DiaryInputs } from "../@types/types";
+
+export const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
 //구글 로그아웃
 export const handleGoogleLogout = () => {
@@ -27,8 +28,6 @@ export const handleGoogleLogout = () => {
 
 //카카오 로그아웃
 export const handleKakaoLogout = () => {
-  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
-
   axios
     .post(
       "https://kapi.kakao.com/v1/user/logout",
@@ -51,8 +50,22 @@ export const handleKakaoLogout = () => {
 export const setData = async (userId: string | null, props: DiaryInputs) => {
   const collectionName = `user-${userId}`;
   const docId = `${userId}-${new Date().getTime()}`;
+  const docRef = doc(db, collectionName, docId);
 
-  await setDoc(doc(db, collectionName, docId), props);
+  await setDoc(docRef, props);
+};
+
+//수정
+export const updateData = async (
+  userId: string | null,
+  id: string,
+  props: Omit<DiaryInputs, "id">
+) => {
+  const collectionName = `user-${userId}`;
+  const docId = `${userId}-${id}`;
+  const docRef = doc(db, collectionName, docId);
+
+  await updateDoc(docRef, props);
 };
 
 //모든 문서 읽기
@@ -79,15 +92,6 @@ export const getDataByField = async (collectionName: string, docId: string) => {
       id: docSnap.data().id as string
     };
   }
-};
-
-//수정
-export const updateData = async (
-  collectionName: string,
-  dataId: string,
-  props: DiaryInputs
-) => {
-  await setDoc(doc(db, collectionName, dataId), props);
 };
 
 //삭제

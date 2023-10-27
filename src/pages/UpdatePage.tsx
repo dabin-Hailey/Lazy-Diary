@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
-import { addImage, getDataByField, setData } from "../utils/utils";
-import { DiaryInputs, UserData } from "../@types/types";
+import {
+  currentUser,
+  addImage,
+  getDataByField,
+  updateData
+} from "../utils/utils";
+import { DiaryInputs, UpdateInputs, UserData } from "../@types/types";
 import UpdateEmoji from "../components/update/UpdateEmoji";
 import UpdatePost from "../components/update/UpdatePost";
 import UpdatePhoto from "../components/update/UpdatePhoto";
@@ -15,10 +20,6 @@ const UpdatePage: React.FC = () => {
   const params = useParams();
   const docId = params.id;
   const navigate = useNavigate();
-
-  const currentUser: UserData = JSON.parse(
-    localStorage.getItem("userData") || "{}"
-  );
 
   const [inputs, setInputs] = useState<DiaryInputs>({
     id: "",
@@ -35,8 +36,8 @@ const UpdatePage: React.FC = () => {
     photoURL: ""
   });
 
-  const { title, feeling, weather, meeting, activity, post, photoURL } =
-    inputs as DiaryInputs;
+  const { id, title, feeling, weather, meeting, activity, post, photoURL } =
+    inputs as UpdateInputs;
 
   const [imgFile, setImgFile] = useState<File>();
 
@@ -59,7 +60,7 @@ const UpdatePage: React.FC = () => {
 
     if (imgFile) {
       const imageURL = await addImage(imgFile as File);
-      await setData(currentUser.id, {
+      await updateData(currentUser.id, id, {
         ...inputs,
         year,
         month,
@@ -72,7 +73,7 @@ const UpdatePage: React.FC = () => {
         photoURL: imageURL
       });
     } else {
-      await setData(currentUser.id, {
+      await updateData(currentUser.id, id, {
         ...inputs,
         year,
         month,

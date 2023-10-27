@@ -207,7 +207,7 @@ const CreateEmoji: React.FC = () => {
           <input
             type="radio"
             id="activity-exercise"
-            value="https://firebasestorage.googleapis.com/v0/b/lazy-diary-7352b.appspot.com/o/assets%2Factivity-exercise.png?alt=media&token=7216c7a0-3756-4d7d-8233-7943735aa6bd"
+            value="activity-exercise"
             name="activity"
             required
           />

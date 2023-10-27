@@ -3,11 +3,11 @@ import { css } from "@emotion/react";
 import { colors, defaultBtn } from "../../styles";
 import { useNavigate } from "react-router-dom";
 import { handleGoogleLogout, handleKakaoLogout } from "../../utils/utils";
+import { currentUser } from "../../utils/utils";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const pathname = window.location.pathname;
-  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   const handleLogout = () => {
     if (currentUser.platform === "kakao") {
