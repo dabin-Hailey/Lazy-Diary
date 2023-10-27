@@ -1,14 +1,17 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { emojiTitle, emojiWrapper, selectEmoji } from "../../styles";
-import { DiaryInputs } from "../../@types/types";
 
-type EmojiProps = Pick<
-  DiaryInputs,
-  "feeling" | "weather" | "meeting" | "activity"
->;
+type EmojiProps = {
+  handleChange: (e: React.ChangeEvent) => void;
+  feeling: string;
+  weather: string;
+  meeting: string;
+  activity: string;
+};
 
 const UpdateEmoji: React.FC<EmojiProps> = ({
+  handleChange,
   feeling,
   weather,
   meeting,
@@ -30,7 +33,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="feeling-excited"
               name="feeling"
               defaultChecked={feeling === "feeling-excited"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="feeling-excited">
               <img src="/images/feeling-excited.png" />
@@ -42,7 +45,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="feeling-happy"
               name="feeling"
               defaultChecked={feeling === "feeling-happy"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="feeling-happy">
               <img src="/images/feeling-happy.png" />
@@ -54,7 +57,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="feeling-soso"
               name="feeling"
               defaultChecked={feeling === "feeling-soso"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="feeling-soso">
               <img src="/images/feeling-soso.png" />
@@ -66,7 +69,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="feeling-sad"
               name="feeling"
               defaultChecked={feeling === "feeling-sad"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="feeling-sad">
               <img src="/images/feeling-sad.png" />
@@ -78,7 +81,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="feeling-angry"
               name="feeling"
               defaultChecked={feeling === "feeling-angry"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="feeling-angry">
               <img src="/images/feeling-angry.png" />
@@ -99,7 +102,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="weather-sunny"
               name="weather"
               defaultChecked={weather === "weather-sunny"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="weather-sunny">
               <img src="/images/weather-sunny.png" />
@@ -111,7 +114,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="weather-cloudy"
               name="weather"
               defaultChecked={weather === "weather-cloudy"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="weather-cloudy">
               <img src="/images/weather-cloudy.png" />
@@ -123,7 +126,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="weather-windy"
               name="weather"
               defaultChecked={weather === "weather-windy"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="weather-windy">
               <img src="/images/weather-windy.png" />
@@ -135,7 +138,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="weather-rainy"
               name="weather"
               defaultChecked={weather === "weather-rainy"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="weather-rainy">
               <img src="/images/weather-rainy.png" />
@@ -147,7 +150,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="weather-snowy"
               name="weather"
               defaultChecked={weather === "weather-snowy"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="weather-snowy">
               <img src="/images/weather-snowy.png" />
@@ -168,7 +171,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="meeting-friend"
               name="meeting"
               defaultChecked={meeting === "meeting-friend"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="meeting-friend">
               <img src="/images/meeting-friend.png" />
@@ -180,7 +183,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="meeting-family"
               name="meeting"
               defaultChecked={meeting === "meeting-family"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="meeting-family">
               <img src="/images/meeting-family.png" />
@@ -192,7 +195,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="meeting-couple"
               name="meeting"
               defaultChecked={meeting === "meeting-couple"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="meeting-couple">
               <img src="/images/meeting-couple.png" />
@@ -204,7 +207,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="meeting-acquaintance"
               name="meeting"
               defaultChecked={meeting === "meeting-acquaintance"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="meeting-acquaintance">
               <img src="/images/meeting-acquaintance.png" />
@@ -216,7 +219,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="meeting-no"
               name="meeting"
               defaultChecked={meeting === "meeting-no"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="meeting-no">
               <img src="/images/meeting-no.png" />
@@ -237,7 +240,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-exercise"
               name="activity"
               defaultChecked={activity === "activity-exercise"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-exercise">
               <img src="/images/activity-exercise.png" />
@@ -249,7 +252,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-game"
               name="activity"
               defaultChecked={activity === "activity-game"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-game">
               <img src="/images/activity-game.png" />
@@ -261,7 +264,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-movie"
               name="activity"
               defaultChecked={activity === "activity-movie"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-movie">
               <img src="/images/activity-movie.png" />
@@ -273,7 +276,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-study"
               name="activity"
               defaultChecked={activity === "activity-study"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-study">
               <img src="/images/activity-study.png" />
@@ -289,7 +292,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-reading"
               name="activity"
               defaultChecked={activity === "activity-reading"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-reading">
               <img src="/images/activity-reading.png" />
@@ -301,7 +304,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-restaurant"
               name="activity"
               defaultChecked={activity === "activity-restaurant"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-restaurant">
               <img src="/images/activity-restaurant.png" />
@@ -313,7 +316,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-shopping"
               name="activity"
               defaultChecked={activity === "activity-shopping"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-shopping">
               <img src="/images/activity-shopping.png" />
@@ -325,7 +328,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-play"
               name="activity"
               defaultChecked={activity === "activity-play"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-play">
               <img src="/images/activity-play.png" />
@@ -337,7 +340,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-travel"
               name="activity"
               defaultChecked={activity === "activity-travel"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-travel">
               <img src="/images/activity-travel.png" />
@@ -349,7 +352,7 @@ const UpdateEmoji: React.FC<EmojiProps> = ({
               value="activity-relax"
               name="activity"
               defaultChecked={activity === "activity-relax"}
-              required
+              onChange={handleChange}
             />
             <label htmlFor="activity-relax">
               <img src="/images/activity-relax.png" />

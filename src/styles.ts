@@ -99,6 +99,20 @@ export const loginBtn = css`
   }
 `;
 
+export const CreateWrapper = css`
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+
+  background-color: ${colors.bgColor};
+
+  margin: 5rem auto;
+`;
+
 export const createWrapperCommon = css`
   width: 100%;
 
@@ -291,6 +305,23 @@ export const photoWrapper = css`
     margin-bottom: 2rem;
     cursor: pointer;
   }
+`;
+
+export const ListWrapper = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  background-color: ${colors.bgColor};
+
+  margin: 5rem auto;
+`;
+
+export const noList = css`
+  font-size: 3rem;
+  color: ${colors.secondaryColor};
 `;
 
 export const itemWrapper = css`

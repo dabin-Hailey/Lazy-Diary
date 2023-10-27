@@ -1,11 +1,7 @@
 import Kakao from "../components/login/Kakao";
 
-const Redirect = () => {
-  return (
-    <div>
-      <Kakao />
-    </div>
-  );
+const Redirect: React.FC = () => {
+  return <Kakao />;
 };
 
 export default Redirect;

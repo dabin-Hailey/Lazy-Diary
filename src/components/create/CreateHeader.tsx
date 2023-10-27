@@ -28,7 +28,6 @@ const CreateHeader: React.FC<HeaderProps> = ({
         name="title"
         onChange={handleChange}
         ref={titleInputRef}
-        // required
       />
       <div css={BtnWrapper}>
         <button

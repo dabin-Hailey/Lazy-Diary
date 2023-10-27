@@ -6,11 +6,16 @@ import {
 } from "../../styles";
 
 interface HeaderProps {
-  title?: string;
+  title: string;
   handleChange: (e: React.ChangeEvent) => void;
+  titleInputRef: React.RefObject<HTMLInputElement>;
 }
 
-const UpdateHeader: React.FC<HeaderProps> = ({ title, handleChange }) => {
+const UpdateHeader: React.FC<HeaderProps> = ({
+  title,
+  handleChange,
+  titleInputRef
+}) => {
   const handleReset = () => {
     window.location.href = "/list";
   };
@@ -22,8 +27,8 @@ const UpdateHeader: React.FC<HeaderProps> = ({ title, handleChange }) => {
         placeholder="제목을 입력하세요."
         name="title"
         onChange={handleChange}
-        required
         defaultValue={title}
+        ref={titleInputRef}
       />
       <div css={BtnWrapper}>
         <button

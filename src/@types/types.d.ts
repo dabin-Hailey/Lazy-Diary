@@ -9,12 +9,12 @@ export interface UserData {
 
 export interface DiaryInputs {
   key?: string;
-  id: string;
-  title?: string;
   year?: number;
   month?: number;
   date?: number;
   day?: string;
+  id: string;
+  title?: string;
   feeling?: string;
   weather?: string;
   meeting?: string;
@@ -24,6 +24,7 @@ export interface DiaryInputs {
 }
 
 export interface UpdateInputs {
+  id: string;
   title: string;
   feeling: string;
   weather: string;

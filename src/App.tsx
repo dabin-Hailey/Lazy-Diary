@@ -7,6 +7,7 @@ import ListPage from "./pages/ListPage";
 import CreatePage from "./pages/CreatePage";
 import Redirect from "./pages/Redirect";
 import UpdatePage from "./pages/UpdatePage";
+import Floating from "./components/common/Floating";
 
 function App() {
   const Layout = () => {
@@ -14,6 +15,7 @@ function App() {
       <>
         <Header />
         <Outlet />
+        <Floating />
         <Footer />
       </>
     );

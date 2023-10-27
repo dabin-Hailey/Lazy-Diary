@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Login from "../components/login/Login";
 
-const LoginPage = () => {
-  return (
-    <div>
-      <Login />
-    </div>
-  );
+const LoginPage: React.FC = () => {
+  return <Login />;
 };
 
 export default LoginPage;
