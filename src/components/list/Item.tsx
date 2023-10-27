@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItems } from "../../@types/types";
+import { DiaryInputs } from "../../@types/types";
 import {
   itemBtnWrapper,
   itemDate,
@@ -10,8 +10,13 @@ import {
   itemWrapper
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
+import { currentUser } from "../../utils/utils";
 
-const Item: React.FC<ListItems> = ({
+interface ItemProps extends DiaryInputs {
+  handleDelete: (userId: string, id: string) => void;
+}
+
+const Item: React.FC<ItemProps> = ({
   id,
   title,
   year,
@@ -23,7 +28,7 @@ const Item: React.FC<ListItems> = ({
   meeting,
   activity,
   post,
-  handleModal
+  handleDelete
 }) => {
   const navigate = useNavigate();
   const handleUpdate = (id: string) => {
@@ -31,10 +36,7 @@ const Item: React.FC<ListItems> = ({
   };
 
   return (
-    <div
-      css={itemWrapper}
-      onClick={handleModal}
-    >
+    <div css={itemWrapper}>
       <div css={itemTitleWrapper}>
         <p css={itemTitle}>{title}</p>
         <p css={itemDate}>
@@ -51,11 +53,7 @@ const Item: React.FC<ListItems> = ({
         </div>
         <div css={itemBtnWrapper}>
           <button onClick={() => handleUpdate(id)}>수정</button>
-          <button
-          // onClick={handleModal}
-          >
-            삭제
-          </button>
+          <button onClick={() => handleDelete(currentUser.id, id)}>삭제</button>
         </div>
       </div>
     </div>

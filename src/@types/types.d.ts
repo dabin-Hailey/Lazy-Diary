@@ -23,11 +23,7 @@ export interface DiaryInputs {
   photoURL?: string | undefined;
 }
 
-export interface ListItems extends DiaryInputs {
-  handleModal: () => void;
-}
-
-export interface UpdateInputs extends DiaryInputs {
+export interface UpdateInputs {
   title: string;
   feeling: string;
   weather: string;

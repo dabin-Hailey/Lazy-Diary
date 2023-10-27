@@ -68,6 +68,14 @@ export const updateData = async (
   await updateDoc(docRef, props);
 };
 
+//삭제
+export const deleteData = async (userId: string, id: string) => {
+  const collectionName = `user-${userId}`;
+  const docId = id;
+
+  await deleteDoc(doc(db, collectionName, docId));
+};
+
 //모든 문서 읽기
 export const getData = async (
   collectionName: string
@@ -92,11 +100,6 @@ export const getDataByField = async (collectionName: string, docId: string) => {
       id: docSnap.data().id as string
     };
   }
-};
-
-//삭제
-export const deleteData = async (collectionName: string, dataId: string) => {
-  await deleteDoc(doc(db, collectionName, dataId));
 };
 
 //이미지 추가

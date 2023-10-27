@@ -1,27 +1,52 @@
 import React, { useEffect, useState } from "react";
-import { DiaryInputs, UserData } from "../@types/types";
+import { DiaryInputs } from "../@types/types";
 import ListNav from "../components/list/ListNav";
 import Item from "../components/list/Item";
-import { currentUser, getData } from "../utils/utils";
+import { currentUser, deleteData, getData } from "../utils/utils";
 
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { colors, itemWrapper } from "../styles";
+import Swal from "sweetalert2";
 
 const ListPage: React.FC = () => {
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState<boolean>(false);
+  const [list, setList] = useState<DiaryInputs[]>([]);
 
-  const [diaryList, setDiaryList] = useState<DiaryInputs[]>([]);
+  const handleDelete = async (userId: string, id: string) => {
+    const result = await Swal.fire({
+      title: "정말 삭제하시겠습니까?",
+      text: "삭제한 후에는 복구가 불가능합니다 🥲",
+      icon: "warning",
+      showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "삭제",
+      cancelButtonText: "취소",
+      reverseButtons: true // 버튼 순서 거꾸로
+    });
 
-  const handleModal = () => {
-    setIsDeleteModalOpen(!isDeleteModalOpen);
+    if (result.isConfirmed) {
+      const newList = list.filter((item) => {
+        return item.id !== id;
+      });
+      setList(newList);
+
+      await deleteData(userId, id);
+      Swal.fire("삭제가 완료되었습니다.", "화끈하시네요~!", "success");
+    } else if (result.isDismissed) {
+      Swal.fire(
+        "삭제를 취소하셨습니다.",
+        "좋은 결정이라고 생각해요🩷",
+        "success"
+      );
+    }
   };
 
   const fetchData = async () => {
     if (currentUser.id) {
       const userId = `user-${currentUser.id}`;
       const response = await getData(userId);
-      setDiaryList(response);
+      setList(response);
     }
   };
 
@@ -30,11 +55,11 @@ const ListPage: React.FC = () => {
   }, []);
 
   //일기 목록이 있을 때는 목록 출력
-  if (diaryList.length > 0) {
+  if (list.length > 0) {
     return (
       <div css={ListWrapper}>
         <ListNav />
-        {diaryList.map((item) => {
+        {list.map((item) => {
           const {
             id,
             title,
@@ -62,7 +87,7 @@ const ListPage: React.FC = () => {
               meeting={meeting}
               activity={activity}
               post={post}
-              handleModal={handleModal}
+              handleDelete={handleDelete}
             />
           );
         })}
