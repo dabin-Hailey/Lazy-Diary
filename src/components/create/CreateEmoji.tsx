@@ -2,7 +2,11 @@
 import { css } from "@emotion/react";
 import { emojiTitle, emojiWrapper, selectEmoji } from "../../styles";
 
-const CreateEmoji: React.FC = () => {
+interface EmojiProps {
+  handleChange: (e: React.ChangeEvent) => void;
+}
+
+const CreateEmoji: React.FC<EmojiProps> = ({ handleChange }) => {
   return (
     <div css={createEmojiWrapper}>
       {/* feeling - 무드 */}
@@ -17,7 +21,8 @@ const CreateEmoji: React.FC = () => {
             id="feeling-excited"
             value="feeling-excited"
             name="feeling"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="feeling-excited">
             <img src="/images/feeling-excited.png" />
@@ -28,7 +33,8 @@ const CreateEmoji: React.FC = () => {
             id="feeling-happy"
             value="feeling-happy"
             name="feeling"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="feeling-happy">
             <img src="/images/feeling-happy.png" />
@@ -39,7 +45,8 @@ const CreateEmoji: React.FC = () => {
             id="feeling-soso"
             value="feeling-soso"
             name="feeling"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="feeling-soso">
             <img src="/images/feeling-soso.png" />
@@ -50,7 +57,8 @@ const CreateEmoji: React.FC = () => {
             id="feeling-sad"
             value="feeling-sad"
             name="feeling"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="feeling-sad">
             <img src="/images/feeling-sad.png" />
@@ -61,7 +69,8 @@ const CreateEmoji: React.FC = () => {
             id="feeling-angry"
             value="feeling-angry"
             name="feeling"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="feeling-angry">
             <img src="/images/feeling-angry.png" />
@@ -81,7 +90,8 @@ const CreateEmoji: React.FC = () => {
             id="weather-sunny"
             value="weather-sunny"
             name="weather"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="weather-sunny">
             <img src="/images/weather-sunny.png" />
@@ -92,7 +102,8 @@ const CreateEmoji: React.FC = () => {
             id="weather-cloudy"
             value="weather-cloudy"
             name="weather"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="weather-cloudy">
             <img src="/images/weather-cloudy.png" />
@@ -103,7 +114,8 @@ const CreateEmoji: React.FC = () => {
             id="weather-windy"
             value="weather-windy"
             name="weather"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="weather-windy">
             <img src="/images/weather-windy.png" />
@@ -114,7 +126,8 @@ const CreateEmoji: React.FC = () => {
             id="weather-rainy"
             value="weather-rainy"
             name="weather"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="weather-rainy">
             <img src="/images/weather-rainy.png" />
@@ -125,7 +138,8 @@ const CreateEmoji: React.FC = () => {
             id="weather-snowy"
             value="weather-snowy"
             name="weather"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="weather-snowy">
             <img src="/images/weather-snowy.png" />
@@ -145,7 +159,8 @@ const CreateEmoji: React.FC = () => {
             id="meeting-friend"
             value="meeting-friend"
             name="meeting"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="meeting-friend">
             <img src="/images/meeting-friend.png" />
@@ -156,7 +171,8 @@ const CreateEmoji: React.FC = () => {
             id="meeting-family"
             value="meeting-family"
             name="meeting"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="meeting-family">
             <img src="/images/meeting-family.png" />
@@ -167,7 +183,8 @@ const CreateEmoji: React.FC = () => {
             id="meeting-couple"
             value="meeting-couple"
             name="meeting"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="meeting-couple">
             <img src="/images/meeting-couple.png" />
@@ -178,7 +195,8 @@ const CreateEmoji: React.FC = () => {
             id="meeting-acquaintance"
             value="meeting-acquaintance"
             name="meeting"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="meeting-acquaintance">
             <img src="/images/meeting-acquaintance.png" />
@@ -189,7 +207,8 @@ const CreateEmoji: React.FC = () => {
             id="meeting-no"
             value="meeting-no"
             name="meeting"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="meeting-no">
             <img src="/images/meeting-no.png" />
@@ -209,7 +228,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-exercise"
             value="activity-exercise"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-exercise">
             <img src="/images/activity-exercise.png" />
@@ -220,7 +240,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-game"
             value="activity-game"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-game">
             <img src="/images/activity-game.png" />
@@ -231,7 +252,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-movie"
             value="activity-movie"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-movie">
             <img src="/images/activity-movie.png" />
@@ -242,7 +264,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-study"
             value="activity-study"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-study">
             <img src="/images/activity-study.png" />
@@ -257,7 +280,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-reading"
             value="activity-reading"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-reading">
             <img src="/images/activity-reading.png" />
@@ -268,7 +292,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-restaurant"
             value="activity-restaurant"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-restaurant">
             <img src="/images/activity-restaurant.png" />
@@ -279,7 +304,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-shopping"
             value="activity-shopping"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-shopping">
             <img src="/images/activity-shopping.png" />
@@ -290,7 +316,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-play"
             value="activity-play"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-play">
             <img src="/images/activity-play.png" />
@@ -301,7 +328,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-travel"
             value="activity-travel"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-travel">
             <img src="/images/activity-travel.png" />
@@ -312,7 +340,8 @@ const CreateEmoji: React.FC = () => {
             id="activity-relax"
             value="activity-relax"
             name="activity"
-            required
+            onChange={handleChange}
+            //require
           />
           <label htmlFor="activity-relax">
             <img src="/images/activity-relax.png" />

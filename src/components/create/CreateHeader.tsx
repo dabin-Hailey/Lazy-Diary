@@ -1,3 +1,4 @@
+import React from "react";
 import {
   BtnWrapper,
   CreateHeaderWrapper,
@@ -5,11 +6,15 @@ import {
   reverseBtn
 } from "../../styles";
 
-interface Props {
+interface HeaderProps {
   handleChange: (e: React.ChangeEvent) => void;
+  titleInputRef: React.RefObject<HTMLInputElement>;
 }
 
-const CreateHeader: React.FC<Props> = ({ handleChange }) => {
+const CreateHeader: React.FC<HeaderProps> = ({
+  handleChange,
+  titleInputRef
+}) => {
   const handleReset = () => {
     window.location.href = "/list";
   };
@@ -19,9 +24,11 @@ const CreateHeader: React.FC<Props> = ({ handleChange }) => {
       <input
         type="text"
         placeholder="제목을 입력하세요."
+        id="title"
         name="title"
         onChange={handleChange}
-        required
+        ref={titleInputRef}
+        // required
       />
       <div css={BtnWrapper}>
         <button

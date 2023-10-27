@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { addImage, setData } from "../utils/utils";
 import { DiaryInputs } from "../@types/types";
 import EditEmoji from "../components/create/CreateEmoji";
@@ -11,9 +11,12 @@ import { currentUser } from "../utils/utils";
 import { css } from "@emotion/react";
 import { colors } from "../styles";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const EditPage: React.FC = () => {
+const CreatePage: React.FC = () => {
   const navigate = useNavigate();
+
+  const titleInputRef = useRef<HTMLInputElement>(null);
 
   const [imgFile, setImgFile] = useState<File>();
   const [imgPath, setImgPath] = useState("");
@@ -51,6 +54,57 @@ const EditPage: React.FC = () => {
     const date = now.getDate(); // 날짜
     const day = WEEKDAY[now.getDay()]; // 요일
 
+    if (titleInputRef.current?.value === "") {
+      Swal.fire({
+        title: "제목이 비었어요.. 🥲",
+        text: "좋은 말로 할 때 제목을 입력하세요 💬",
+        icon: "error",
+        confirmButtonText: "확인"
+      });
+      titleInputRef.current?.focus();
+      return;
+    }
+
+    if (inputs.feeling === "") {
+      Swal.fire({
+        title: "감정이 비었어요.. 🥲",
+        text: "어떤 하루였는지 알려주세요 🩷",
+        icon: "error",
+        confirmButtonText: "확인"
+      });
+      return;
+    }
+
+    if (inputs.weather === "") {
+      Swal.fire({
+        title: "날씨가 비었어요.. 🥲",
+        text: "날씨가 어땠는지 알려주세요 🩷",
+        icon: "error",
+        confirmButtonText: "확인"
+      });
+      return;
+    }
+
+    if (inputs.meeting === "") {
+      Swal.fire({
+        title: "인연이 비었어요.. 🥲",
+        text: "누구를 만났는지 알려주세요 🩷",
+        icon: "error",
+        confirmButtonText: "확인"
+      });
+      return;
+    }
+
+    if (inputs.activity === "") {
+      Swal.fire({
+        title: "활동이 비었어요.. 🥲",
+        text: "무엇을 했는지 알려주세요 🩷",
+        icon: "error",
+        confirmButtonText: "확인"
+      });
+      return;
+    }
+
     if (imgFile) {
       const imageURL = await addImage(imgFile);
       await setData(currentUser.id, {
@@ -60,10 +114,6 @@ const EditPage: React.FC = () => {
         month,
         date,
         day,
-        feeling: form.feeling.value,
-        weather: form.weather.value,
-        meeting: form.meeting.value,
-        activity: form.activity.value,
         photoURL: imageURL
       });
     } else {
@@ -73,23 +123,26 @@ const EditPage: React.FC = () => {
         year,
         month,
         date,
-        day,
-        feeling: form.feeling.value,
-        weather: form.weather.value,
-        meeting: form.meeting.value,
-        activity: form.activity.value
+        day
       });
     }
     navigate("/list");
   };
 
+  useEffect(() => {
+    titleInputRef.current?.focus();
+  }, []);
+
   return (
     <form
-      css={EditWrapper}
+      css={CreateWrapper}
       onSubmit={handleSubmit}
     >
-      <EditHeader handleChange={handleChange} />
-      <EditEmoji />
+      <EditHeader
+        handleChange={handleChange}
+        titleInputRef={titleInputRef}
+      />
+      <EditEmoji handleChange={handleChange} />
       <EditPost handleChange={handleChange} />
       <EditPhoto
         imgPath={imgPath}
@@ -100,9 +153,9 @@ const EditPage: React.FC = () => {
   );
 };
 
-export default EditPage;
+export default CreatePage;
 
-const EditWrapper = css`
+const CreateWrapper = css`
   max-width: 1200px;
 
   display: flex;
