@@ -7,8 +7,8 @@ import ListNav from "./ListNav";
 import Item from "./Item";
 
 const List: React.FC = () => {
-  const [list, setList] = useState<DiaryInputs[]>([]);
   const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
+  const [list, setList] = useState<DiaryInputs[]>([]);
 
   const handleDelete = async (userId: string, id: string) => {
     const result = await Swal.fire({
@@ -50,7 +50,7 @@ const List: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, [currentUser]);
+  }, []);
 
   //일기 목록이 있을 때는 목록 출력
   if (list.length > 0) {

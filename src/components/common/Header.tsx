@@ -69,6 +69,9 @@ const Header: React.FC = () => {
 export default Header;
 
 const headerWrapper = css`
+  max-width: 1200px;
+  margin: 0 auto;
+
   display: flex;
   flex-direction: row;
   align-items: center;

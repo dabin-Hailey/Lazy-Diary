@@ -8,6 +8,7 @@ import UpdateHeader from "./UpdateHeader";
 import UpdateEmoji from "./UpdateEmoji";
 import UpdatePost from "./UpdatePost";
 import UpdatePhoto from "./UpdatePhoto";
+import FormButtons from "../common/FormButtons";
 
 const Update: React.FC = () => {
   const params = useParams();
@@ -33,6 +34,16 @@ const Update: React.FC = () => {
 
   const { id, title, feeling, weather, meeting, activity, post, photoURL } =
     inputs as UpdateInputs;
+
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const handleScrolling = () => {
+    if (window.scrollY > 100) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  };
 
   //text로 입력하는 항목 저장 (title, post)
   const handleChange = (e: React.ChangeEvent) => {
@@ -137,6 +148,14 @@ const Update: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrolling);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrolling);
+    };
+  }, []);
+
   return (
     <form
       css={CreateWrapper}
@@ -162,6 +181,7 @@ const Update: React.FC = () => {
         photoURL={photoURL}
         setImgFile={setImgFile}
       />
+      {isScrolling ? <FormButtons /> : null}
     </form>
   );
 };

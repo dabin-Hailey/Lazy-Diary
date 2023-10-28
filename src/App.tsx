@@ -6,9 +6,9 @@ import SignUpPage from "./pages/SignUpPage";
 import ListPage from "./pages/ListPage";
 import CreatePage from "./pages/CreatePage";
 import UpdatePage from "./pages/UpdatePage";
-import Floating from "./components/common/Floating";
 import Redirect from "./pages/Redirect";
 import TopButton from "./components/common/TopButton";
+import NotFound from "./components/common/NotFound";
 
 function App() {
   const Layout = () => {
@@ -16,7 +16,6 @@ function App() {
       <>
         <Header />
         <Outlet />
-        {/* <Floating /> */}
         <TopButton />
         <Footer />
       </>
@@ -54,6 +53,10 @@ function App() {
           element={<UpdatePage />}
         />
       </Route>
+      <Route
+        path="/*"
+        element={<NotFound />}
+      />
     </Routes>
   );
 }

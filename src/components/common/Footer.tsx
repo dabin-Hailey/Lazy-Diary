@@ -39,7 +39,9 @@ const Footer: React.FC = () => {
 export default Footer;
 
 const footerWrapper = css`
+  max-width: 1200px;
   height: 10rem;
+  margin: 0 auto;
 
   display: flex;
   flex-direction: column;

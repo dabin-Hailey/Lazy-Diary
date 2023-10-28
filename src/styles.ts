@@ -169,7 +169,7 @@ export const CreateHeaderWrapper = css`
 
 export const BtnWrapper = css`
   width: 20%;
-  height: 100%;
+  height: 5.5rem;
 
   display: flex;
   flex-direction: row;
@@ -308,6 +308,9 @@ export const photoWrapper = css`
 `;
 
 export const ListWrapper = css`
+  max-width: 1200px;
+  margin: 5rem auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -315,8 +318,6 @@ export const ListWrapper = css`
   gap: 2rem;
 
   background-color: ${colors.bgColor};
-
-  margin: 5rem auto;
 `;
 
 export const noList = css`
@@ -339,8 +340,6 @@ export const itemWrapper = css`
   align-items: start;
   justify-content: space-between;
   gap: 1rem;
-
-  cursor: pointer;
 `;
 
 export const itemTitleWrapper = css`

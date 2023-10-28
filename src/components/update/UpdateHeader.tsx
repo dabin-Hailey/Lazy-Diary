@@ -1,9 +1,5 @@
-import {
-  BtnWrapper,
-  CreateHeaderWrapper,
-  defaultBtn,
-  reverseBtn
-} from "../../styles";
+import { CreateHeaderWrapper } from "../../styles";
+import FormButtons from "../common/FormButtons";
 
 interface HeaderProps {
   title: string;
@@ -16,10 +12,6 @@ const UpdateHeader: React.FC<HeaderProps> = ({
   handleChange,
   titleInputRef
 }) => {
-  const handleReset = () => {
-    window.location.href = "/list";
-  };
-
   return (
     <div css={CreateHeaderWrapper}>
       <input
@@ -30,21 +22,7 @@ const UpdateHeader: React.FC<HeaderProps> = ({
         defaultValue={title}
         ref={titleInputRef}
       />
-      <div css={BtnWrapper}>
-        <button
-          type="reset"
-          css={defaultBtn}
-          onClick={handleReset}
-        >
-          Home
-        </button>
-        <button
-          type="submit"
-          css={reverseBtn}
-        >
-          저장
-        </button>
-      </div>
+      <FormButtons />
     </div>
   );
 };

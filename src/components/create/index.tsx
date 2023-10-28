@@ -8,6 +8,8 @@ import CreateHeader from "./CreateHeader";
 import CreateEmoji from "./CreateEmoji";
 import CreatePost from "./CreatePost";
 import CreatePhoto from "./CreatePhoto";
+import FormButtons from "../common/FormButtons";
+import NotFound from "../common/NotFound";
 
 const Create = () => {
   const navigate = useNavigate();
@@ -29,6 +31,16 @@ const Create = () => {
     post: "",
     photoURL: ""
   });
+
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  const handleScrolling = () => {
+    if (window.scrollY > 100) {
+      setIsScrolling(true);
+    } else {
+      setIsScrolling(false);
+    }
+  };
 
   //text로 입력하는 항목 저장 (title, post)
   const handleChange = (e: React.ChangeEvent) => {
@@ -127,24 +139,37 @@ const Create = () => {
     titleInputRef.current?.focus();
   }, []);
 
-  return (
-    <form
-      css={CreateWrapper}
-      onSubmit={handleSubmit}
-    >
-      <CreateHeader
-        handleChange={handleChange}
-        titleInputRef={titleInputRef}
-      />
-      <CreateEmoji handleChange={handleChange} />
-      <CreatePost handleChange={handleChange} />
-      <CreatePhoto
-        imgPath={imgPath}
-        setImgPath={setImgPath}
-        setImgFile={setImgFile}
-      />
-    </form>
-  );
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrolling);
+
+    return () => {
+      window.removeEventListener("scroll", handleScrolling);
+    };
+  }, []);
+
+  if (currentUser) {
+    return (
+      <form
+        css={CreateWrapper}
+        onSubmit={handleSubmit}
+      >
+        <CreateHeader
+          handleChange={handleChange}
+          titleInputRef={titleInputRef}
+        />
+        <CreateEmoji handleChange={handleChange} />
+        <CreatePost handleChange={handleChange} />
+        <CreatePhoto
+          imgPath={imgPath}
+          setImgPath={setImgPath}
+          setImgFile={setImgFile}
+        />
+        {isScrolling ? <FormButtons /> : null}
+      </form>
+    );
+  } else {
+    <NotFound />;
+  }
 };
 
 export default Create;
