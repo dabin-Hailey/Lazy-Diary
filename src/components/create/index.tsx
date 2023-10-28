@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateWrapper } from "../../styles";
-import { DiaryInputs } from "../../@types/types";
+import { DiaryInputs, UserData } from "../../@types/types";
 import { addImage, setData } from "../../utils/utils";
 import Swal from "sweetalert2";
 import CreateHeader from "./CreateHeader";
@@ -9,7 +9,6 @@ import CreateEmoji from "./CreateEmoji";
 import CreatePost from "./CreatePost";
 import CreatePhoto from "./CreatePhoto";
 import FormButtons from "../common/FormButtons";
-import NotFound from "../common/NotFound";
 
 const Create = () => {
   const navigate = useNavigate();
@@ -147,29 +146,25 @@ const Create = () => {
     };
   }, []);
 
-  if (currentUser) {
-    return (
-      <form
-        css={CreateWrapper}
-        onSubmit={handleSubmit}
-      >
-        <CreateHeader
-          handleChange={handleChange}
-          titleInputRef={titleInputRef}
-        />
-        <CreateEmoji handleChange={handleChange} />
-        <CreatePost handleChange={handleChange} />
-        <CreatePhoto
-          imgPath={imgPath}
-          setImgPath={setImgPath}
-          setImgFile={setImgFile}
-        />
-        {isScrolling ? <FormButtons /> : null}
-      </form>
-    );
-  } else {
-    <NotFound />;
-  }
+  return (
+    <form
+      css={CreateWrapper}
+      onSubmit={handleSubmit}
+    >
+      <CreateHeader
+        handleChange={handleChange}
+        titleInputRef={titleInputRef}
+      />
+      <CreateEmoji handleChange={handleChange} />
+      <CreatePost handleChange={handleChange} />
+      <CreatePhoto
+        imgPath={imgPath}
+        setImgPath={setImgPath}
+        setImgFile={setImgFile}
+      />
+      {isScrolling ? <FormButtons /> : null}
+    </form>
+  );
 };
 
 export default Create;

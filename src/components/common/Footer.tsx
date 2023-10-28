@@ -3,37 +3,40 @@ import { css } from "@emotion/react";
 import { colors } from "../../styles";
 
 const Footer: React.FC = () => {
-  return (
-    <div css={footerWrapper}>
-      <div css={footerTextWrapper}>
-        <span>copyright ⓒ 2023 All rights reserved by dabin-hailey</span>
-        <span>
-          📧 Mail me :{" "}
-          <a
-            href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=991012dabin@gmail.com"
-            target="_blank"
-          >
-            991012dabin@gmail.com
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
+
+  if (currentUser === "{}") {
+    return (
+      <div css={footerWrapper}>
+        <div css={footerTextWrapper}>
+          <span>copyright ⓒ 2023 All rights reserved by dabin-hailey</span>
+          <span>
+            📧 Mail me :{" "}
+            <a
+              href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=991012dabin@gmail.com"
+              target="_blank"
+            >
+              991012dabin@gmail.com
+            </a>
+          </span>
+        </div>
+        <div css={footerIconWrapper}>
+          <a href="https://github.com/dabin-Hailey/Lazy-Diary">
+            <img
+              css={footerIcon}
+              src="/images/github.png"
+            />
           </a>
-        </span>
-        {/* <a href="mailto:991012dabin@gmail.com">991012dabin@gmail.com</a> */}
+          <a href="https://velog.io/@mary0393">
+            <img
+              css={footerIcon}
+              src="/images/blog.png"
+            />
+          </a>
+        </div>
       </div>
-      <div css={footerIconWrapper}>
-        <a href="https://github.com/dabin-Hailey/Lazy-Diary">
-          <img
-            css={footerIcon}
-            src="/images/github.png"
-          />
-        </a>
-        <a href="https://velog.io/@mary0393">
-          <img
-            css={footerIcon}
-            src="/images/blog.png"
-          />
-        </a>
-      </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Footer;

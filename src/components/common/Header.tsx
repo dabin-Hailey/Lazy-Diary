@@ -31,39 +31,41 @@ const Header: React.FC = () => {
     }
   };
 
-  return (
-    <div css={headerWrapper}>
-      <div css={headerLeft}>
-        <div css={profilePhoto}>
-          {pathname !== "/" &&
-          currentUser !== null &&
-          currentUser.photoURL !== null ? (
-            <img src={currentUser.photoURL} />
-          ) : (
-            <img src="/images/favicon.png" />
-          )}
+  if (currentUser === "{}") {
+    return (
+      <div css={headerWrapper}>
+        <div css={headerLeft}>
+          <div css={profilePhoto}>
+            {pathname !== "/" &&
+            currentUser !== null &&
+            currentUser.photoURL !== null ? (
+              <img src={currentUser.photoURL} />
+            ) : (
+              <img src="/images/favicon.png" />
+            )}
+          </div>
+          <div
+            css={headerTitle}
+            onClick={handleClickLogo}
+          >
+            {pathname !== "/" &&
+            currentUser !== null &&
+            currentUser.nickname !== null
+              ? `${currentUser.nickname} 님의 일기`
+              : `Lazy Diary`}
+          </div>
         </div>
-        <div
-          css={headerTitle}
-          onClick={handleClickLogo}
-        >
-          {pathname !== "/" &&
-          currentUser !== null &&
-          currentUser.nickname !== null
-            ? `${currentUser.nickname} 님의 일기`
-            : `Lazy Diary`}
-        </div>
+        {pathname !== "/" && (
+          <div
+            css={logoutBtn}
+            onClick={handleLogout}
+          >
+            Log Out
+          </div>
+        )}
       </div>
-      {pathname !== "/" && (
-        <div
-          css={logoutBtn}
-          onClick={handleLogout}
-        >
-          Log Out
-        </div>
-      )}
-    </div>
-  );
+    );
+  }
 };
 
 export default Header;
