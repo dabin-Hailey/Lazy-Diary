@@ -10,7 +10,6 @@ import {
   itemWrapper
 } from "../../styles";
 import { useNavigate } from "react-router-dom";
-import { currentUser } from "../../utils/utils";
 
 interface ItemProps extends DiaryInputs {
   handleDelete: (userId: string, id: string) => void;
@@ -34,6 +33,7 @@ const Item: React.FC<ItemProps> = ({
   const handleUpdate = (id: string) => {
     navigate(`/update/${id}`);
   };
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   return (
     <div css={itemWrapper}>

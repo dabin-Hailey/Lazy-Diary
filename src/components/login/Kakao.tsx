@@ -12,12 +12,12 @@ const Kakao: React.FC = () => {
   ).get("code");
   const GRANT_TYPE: string = "authorization_code";
   const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
-  const REDIRECT_URI: string = import.meta.env.VITE_REDIRECT_URI;
+  const LOGIN_REDIRECT_URI: string = import.meta.env.VITE_LOGIN_REDIRECT_URI;
 
   const fetchData = () => {
     axios
       .post(
-        `https://kauth.kakao.com/oauth/token?grant_type=${GRANT_TYPE}&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&code=${AUTHORIZE_CODE}`,
+        `https://kauth.kakao.com/oauth/token?grant_type=${GRANT_TYPE}&client_id=${REST_API_KEY}&redirect_uri=${LOGIN_REDIRECT_URI}&code=${AUTHORIZE_CODE}`,
         {},
         {
           headers: {
@@ -80,7 +80,7 @@ const Kakao: React.FC = () => {
           fontWeight: "bold"
         }}
       >
-        로그인 중입니다~~
+        카카오를 통해 로그인 중입니다 🔐
       </h1>
     </>
   );

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateWrapper } from "../../styles";
 import { DiaryInputs } from "../../@types/types";
-import { addImage, currentUser, setData } from "../../utils/utils";
+import { addImage, setData } from "../../utils/utils";
 import Swal from "sweetalert2";
 import CreateHeader from "./CreateHeader";
 import CreateEmoji from "./CreateEmoji";
@@ -11,7 +11,7 @@ import CreatePhoto from "./CreatePhoto";
 
 const Create = () => {
   const navigate = useNavigate();
-
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
   const titleInputRef = useRef<HTMLInputElement>(null);
   const [imgFile, setImgFile] = useState<File>();
   const [imgPath, setImgPath] = useState("");

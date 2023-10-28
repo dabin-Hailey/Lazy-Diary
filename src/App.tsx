@@ -5,9 +5,9 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import ListPage from "./pages/ListPage";
 import CreatePage from "./pages/CreatePage";
-import Redirect from "./pages/Redirect";
 import UpdatePage from "./pages/UpdatePage";
 import Floating from "./components/common/Floating";
+import Redirect from "./pages/Redirect";
 
 function App() {
   const Layout = () => {
@@ -32,7 +32,7 @@ function App() {
           element={<LoginPage />}
         />
         <Route
-          path="oauth/kakao/callback"
+          path="oauth/kakao/login"
           element={<Redirect />}
         />
         <Route

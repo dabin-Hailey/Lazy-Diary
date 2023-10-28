@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { DiaryInputs } from "../../@types/types";
-import { currentUser, deleteData, getData } from "../../utils/utils";
+import { deleteData, getData } from "../../utils/utils";
 import { ListWrapper, itemWrapper, noList } from "../../styles";
 import Swal from "sweetalert2";
 import ListNav from "./ListNav";
@@ -8,6 +8,7 @@ import Item from "./Item";
 
 const List: React.FC = () => {
   const [list, setList] = useState<DiaryInputs[]>([]);
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   const handleDelete = async (userId: string, id: string) => {
     const result = await Swal.fire({
@@ -49,7 +50,7 @@ const List: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [currentUser]);
 
   //일기 목록이 있을 때는 목록 출력
   if (list.length > 0) {

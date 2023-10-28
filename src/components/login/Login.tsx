@@ -21,12 +21,16 @@ const Login: React.FC = () => {
   const pathname = window.location.pathname;
 
   const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
-  const REDIRECT_URI: string = import.meta.env.VITE_REDIRECT_URI;
-  const link: string = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}`;
+  const LOGIN_REDIRECT_URI: string = import.meta.env.VITE_LOGIN_REDIRECT_URI;
+  const link: string = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${REST_API_KEY}&redirect_uri=${LOGIN_REDIRECT_URI}`;
 
   const loginWithKakao = () => {
     window.location.href = link;
   };
+
+  useEffect(() => {
+    localStorage.removeItem("userData");
+  }, []);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

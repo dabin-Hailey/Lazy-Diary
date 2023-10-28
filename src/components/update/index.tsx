@@ -2,12 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DiaryInputs, UpdateInputs } from "../../@types/types";
 import { CreateWrapper } from "../../styles";
-import {
-  currentUser,
-  addImage,
-  getDataByField,
-  updateData
-} from "../../utils/utils";
+import { addImage, getDataByField, updateData } from "../../utils/utils";
 import Swal from "sweetalert2";
 import UpdateHeader from "./UpdateHeader";
 import UpdateEmoji from "./UpdateEmoji";
@@ -18,7 +13,7 @@ const Update: React.FC = () => {
   const params = useParams();
   const docId = params.id;
   const navigate = useNavigate();
-
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
   const titleInputRef = useRef<HTMLInputElement>(null);
   const [imgFile, setImgFile] = useState<File>();
   const [inputs, setInputs] = useState<DiaryInputs>({

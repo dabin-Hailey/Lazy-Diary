@@ -13,7 +13,7 @@ import {
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { DiaryInputs } from "../@types/types";
 
-export const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
+const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
 //구글 로그아웃
 export const handleGoogleLogout = () => {
@@ -26,7 +26,7 @@ export const handleGoogleLogout = () => {
     });
 };
 
-//카카오 로그아웃
+//카카오 로그아웃 (이 서비스만 로그아웃 - 카카오 로그인 캐시는 남아있음)
 export const handleKakaoLogout = () => {
   axios
     .post(

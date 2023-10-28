@@ -2,17 +2,21 @@
 import { css } from "@emotion/react";
 import { colors, defaultBtn } from "../../styles";
 import { useNavigate } from "react-router-dom";
-import { handleGoogleLogout, handleKakaoLogout } from "../../utils/utils";
-import { currentUser } from "../../utils/utils";
+import { handleGoogleLogout } from "../../utils/utils";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const pathname = window.location.pathname;
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
+
+  const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
+  const LOGOUT_REDIRECT_URI: string = import.meta.env.VITE_LOGOUT_REDIRECT_URI;
+
+  const link = `https://kauth.kakao.com/oauth/logout?client_id=${REST_API_KEY}&logout_redirect_uri=${LOGOUT_REDIRECT_URI}`;
 
   const handleLogout = () => {
     if (currentUser.platform === "kakao") {
-      handleKakaoLogout();
-      navigate("/");
+      window.location.replace(link);
     } else if (currentUser.platform === "google") {
       handleGoogleLogout();
       navigate("/");
