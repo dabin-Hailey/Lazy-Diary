@@ -19,7 +19,7 @@ const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 export const handleGoogleLogout = () => {
   signOut(auth)
     .then(() => {
-      localStorage.removeItem("userData");
+      localStorage.clear();
     })
     .catch((error) => {
       console.log("구글 로그아웃 에러", error);
@@ -40,7 +40,7 @@ export const handleKakaoLogout = () => {
       }
     )
     .then(() => {
-      localStorage.removeItem("userData");
+      localStorage.clear();
     })
     .catch((error) => console.log("카카오 로그아웃 에러", error));
 };

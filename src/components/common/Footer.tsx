@@ -6,6 +6,8 @@ const Footer: React.FC = () => {
   const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   if (currentUser === "{}") {
+    return;
+  } else {
     return (
       <div css={footerWrapper}>
         <div css={footerTextWrapper}>

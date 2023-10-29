@@ -17,6 +17,7 @@ const Header: React.FC = () => {
   const handleLogout = () => {
     if (currentUser.platform === "kakao") {
       window.location.replace(link);
+      localStorage.clear();
     } else if (currentUser.platform === "google") {
       handleGoogleLogout();
       navigate("/");
@@ -32,6 +33,8 @@ const Header: React.FC = () => {
   };
 
   if (currentUser === "{}") {
+    return;
+  } else {
     return (
       <div css={headerWrapper}>
         <div css={headerLeft}>

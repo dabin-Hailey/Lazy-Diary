@@ -19,6 +19,7 @@ import {
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const pathname = window.location.pathname;
+  const currentUser = JSON.parse(localStorage.getItem("userData") || "{}");
 
   const REST_API_KEY: string = import.meta.env.VITE_REST_API_KEY;
   const LOGIN_REDIRECT_URI: string = import.meta.env.VITE_LOGIN_REDIRECT_URI;
@@ -29,17 +30,16 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    localStorage.removeItem("userData");
-  }, []);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        navigate("/");
-      } else if (user && pathname === "/") {
-        navigate("/list");
-      }
-    });
+    if (currentUser.platform === "google") {
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          navigate("/");
+        } else if (user && pathname === "/") {
+          navigate("/list");
+        }
+      });
+    } else if (currentUser.platform === "kakao" && pathname === "/")
+      navigate("/list");
   }, [auth, navigate, pathname]);
 
   return (
