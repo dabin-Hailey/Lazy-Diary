@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CreateWrapper } from "../../styles";
-import { DiaryInputs, UserData } from "../../@types/types";
+import { DiaryInputs } from "../../@types/types";
 import { addImage, setData } from "../../utils/utils";
 import Swal from "sweetalert2";
 import CreateHeader from "./CreateHeader";
