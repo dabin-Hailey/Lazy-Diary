@@ -44,8 +44,18 @@ const Login: React.FC = () => {
 
   return (
     <div css={loginWrapper}>
+      <div css={loginDesription}>
+        <h2>일기 쓰기가 귀찮은 사람들을 위한 이모지 일기 😊</h2>
+        <h1>✏️ Lazy Diary</h1>
+        <p>
+          오늘 하루의 기분을 표현할 수 있는 이모지를 선택하는 것만으로 일기 쓰기
+          완료!
+          <br />그 외에 기억하고 싶은 글이나 그림이 있다면 추가로 작성할 수
+          있어요
+        </p>
+      </div>
       <h1 css={loginTitle}>로그인</h1>
-      <form css={loginForm}>
+      {/* <form css={loginForm}>
         <p css={loginFormText}>이메일</p>
         <input
           css={loginInput}
@@ -68,7 +78,7 @@ const Login: React.FC = () => {
       <button css={signUpBtn}>회원가입</button>
       <div css={loginTextWrapper}>
         <p css={loginText}>또는</p>
-      </div>
+      </div> */}
       <button
         css={kakaoLoginBtn}
         onClick={loginWithKakao}
@@ -76,6 +86,14 @@ const Login: React.FC = () => {
         <img src="/images/kakao_login_large_wide.png"></img>
       </button>
       <GoogleLogin />
+      <p css={loginInfo}>
+        현재는 카카오 또는 구글 로그인을 통해서만 서비스 이용이 가능해요 ☺️
+        <br />
+        Lazy Diary 이용 중 불편사항, 문의사항, 궁금점 등이 있으면 아래 메일로
+        연락주세요.
+        <br />
+        <br />- 세상에서 가장 Lazy한 개발자 🩷 -
+      </p>
     </div>
   );
 };
@@ -89,6 +107,26 @@ const loginWrapper = css`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const loginDesription = css`
+  color: ${colors.primaryColor};
+  text-align: center;
+  margin-bottom: 8rem;
+
+  h1 {
+    font-size: 4rem;
+    color: ${colors.secondaryColor};
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  p {
+    font-size: 1.8rem !important;
+    line-height: 3rem;
+  }
 `;
 
 const signUpBtn = css`
@@ -152,4 +190,12 @@ const kakaoLoginBtn = css`
       transform: scale(1.03);
     }
   }
+`;
+
+const loginInfo = css`
+  ${loginText}
+
+  text-align: center;
+  line-height: 2.5rem;
+  margin-top: 5rem;
 `;
